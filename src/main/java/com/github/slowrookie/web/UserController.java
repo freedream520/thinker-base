@@ -1,10 +1,9 @@
 package com.github.slowrookie.web;
 
-import java.util.Map;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -27,18 +26,18 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 
-	@RequestMapping(value = "/users", method = RequestMethod.GET, produces = "application/json")
-	@ResponseBody Page<User> findAll(@RequestParam(required = false) Map<String, String> rquestParamMap) {
-		UserQuery userQuery = new UserQuery();
-		int page = 0;
-		int size = 0;
-		PageRequest pageRequest = new PageRequest(page, size);
-		
+	@RequestMapping(value = "/users", method = RequestMethod.POST, produces = "application/json")
+	@ResponseBody Page<User> findAll(@RequestBody(required = false) UserQuery userQuery, @RequestParam(required = false) Integer page,
+			@RequestParam(required = false) Integer size, @RequestParam(required = false) String order) {
+		if(page == null) page = 0;
+		if(size == null) size = 1000;
+		Sort sort = new Sort(order.split(",")); 
+		PageRequest pageRequest = new PageRequest(page, size, sort);
 		return userService.findAll(userQuery, pageRequest);
 	}
 	
 	
-	@RequestMapping(value = "/users", method = RequestMethod.POST, produces = "application/json")
+	@RequestMapping(value = "/user", method = RequestMethod.PUT, produces = "application/json")
 	@ResponseBody User save(@RequestBody User user){
 		return userService.save(user);
 	}

@@ -13,7 +13,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
 import com.github.slowrookie.entity.User;
-import com.github.slowrookie.entity.query.UserQuery;
 import com.github.slowrookie.test.AbstractTest;
 
 public class UserTest extends AbstractTest{
@@ -21,12 +20,12 @@ public class UserTest extends AbstractTest{
 	@Test
 	public void getUsers() throws Exception {
 		
-		String url = HOST + "users?page=0&size=10";
+		String url = HOST + "users?page=0&size=10&order=realName,createdBy";
 		
 		Map<String, String> params = new HashMap<String, String>();
 		params.put("realName", "liujx");
 		
-		ResponseEntity<String> response = rest.exchange(url, HttpMethod.GET, 
+		ResponseEntity<String> response = rest.exchange(url, HttpMethod.POST, 
 				new HttpEntity<>(params, httpHeaders), String.class);
 		
 		assertEquals(HttpStatus.OK, response.getStatusCode());
