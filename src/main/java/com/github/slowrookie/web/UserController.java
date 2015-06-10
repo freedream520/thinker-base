@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -17,7 +18,7 @@ import com.github.slowrookie.service.UserService;
 
 /**
  * 用户管理
- * @author liujiaxingemail@gmail.com
+ * @author liujx
  *
  */
 @RestController
@@ -26,20 +27,39 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 
+	/**
+	 * <b>查询获取users支持全属性条件查询</b>
+	 * @param userQuery
+	 * @param page
+	 * @param size
+	 * @param order
+	 * @return
+	 */
 	@RequestMapping(value = "/users", method = RequestMethod.POST, produces = "application/json")
 	@ResponseBody Page<User> findAll(@RequestBody(required = false) UserQuery userQuery, @RequestParam(required = false) Integer page,
 			@RequestParam(required = false) Integer size, @RequestParam(required = false) String order) {
+		
+		PageRequest pageRequest = null;
+		Sort sort = null;
+		
 		if(page == null) page = 0;
 		if(size == null) size = 1000;
-		Sort sort = new Sort(order.split(",")); 
-		PageRequest pageRequest = new PageRequest(page, size, sort);
+		if(!StringUtils.isEmpty(order)) sort = new Sort(order.split(","));
+		
+		pageRequest = new PageRequest(page, size, sort);
+		
 		return userService.findAll(userQuery, pageRequest);
 	}
 	
 	
-	@RequestMapping(value = "/user", method = RequestMethod.PUT, produces = "application/json")
-	@ResponseBody User save(@RequestBody User user){
-		return userService.save(user);
+	/**
+	 * <b>保存或者更新</b>
+	 * @param user
+	 * @return
+	 */
+	@RequestMapping(value = "/users", method = RequestMethod.PUT, produces = "application/json")
+	@ResponseBody User persist(@RequestBody User user){
+		return userService.persist(user);
 	}
 	
 }

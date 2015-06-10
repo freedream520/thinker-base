@@ -38,7 +38,8 @@ public class UserTest extends AbstractTest{
 	public void saveUser(){
 		String url = HOST + "users";
 		
-		User user = new User("liujx", "liujx", "1", 1, "liujiaxingemail@gmail.com", "17092080066", "00000000");
+		User user = new User("liujx", "liujx", "3", 1, "liujiaxingemail@gmail.com", "17092080066", "00000000");
+		user.setId(1L);
 		Timestamp d = new Timestamp(System.currentTimeMillis()); 
 		user.setActivity(1);
 		user.setCreatedBy(1L);
@@ -46,7 +47,7 @@ public class UserTest extends AbstractTest{
 		user.setLastUpdateBy(1L);
 		user.setLastUpdateTime(d);
 		
-		ResponseEntity<String> response = rest.exchange(url, HttpMethod.POST, 
+		ResponseEntity<String> response = rest.exchange(url, HttpMethod.PUT, 
 				new HttpEntity<>(user, httpHeaders), String.class);
 		
 		assertEquals(HttpStatus.OK, response.getStatusCode());

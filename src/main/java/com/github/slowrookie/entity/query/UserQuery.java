@@ -19,11 +19,18 @@ public class UserQuery extends User implements Specification<User> {
 	@Override
 	public Predicate toPredicate(Root<User> root, CriteriaQuery<?> query,
 			CriteriaBuilder cb) {
-		
 		List<Predicate> predicates = new ArrayList<Predicate>();
+		
 		if(!StringUtils.isNullOrEmpty(getRealName())){
 			predicates.add(cb.like(root.get("realName").as(String.class), "%" + getRealName() + "%"));
 		}
+		
+		if(null != getId()){
+			predicates.add(cb.equal(root.get("id").as(Long.class), getId()));
+		}
+		
+		
+		
 		Predicate[] pre = new Predicate[predicates.size()];
 		return query.where(predicates.toArray(pre)).getRestriction();
 	}

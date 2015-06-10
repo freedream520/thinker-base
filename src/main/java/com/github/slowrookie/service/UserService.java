@@ -22,7 +22,7 @@ public class UserService {
 		return userRepository.findAll(userQuery, pageable); 
 	}
 	
-	public User save(User user) {
+	public User persist(User user) {
 		return userRepository.save(user);
 	}
 }
