@@ -11,6 +11,11 @@ import com.github.slowrookie.entity.User;
 import com.github.slowrookie.entity.query.UserQuery;
 import com.github.slowrookie.repository.UserRepository;
 
+/**
+ * 用户Service操作
+ * 
+ * @author 刘佳兴
+ */
 @Service
 @Transactional
 public class UserService {
@@ -18,10 +23,28 @@ public class UserService {
 	@Autowired
 	private UserRepository userRepository;
 
+	/**
+	 * 查询所有
+	 * 
+	 * @param userQuery
+	 * 		查询类，根据属性拼接查询语句
+	 * @param pageable
+	 * 		分页参数
+	 * @return Page<User>
+	 * 		返回分页数据
+	 */
 	public Page<User> findAll(UserQuery userQuery, Pageable pageable) {
 		return userRepository.findAll(userQuery, pageable); 
 	}
 	
+	/**
+	 * 持久化方法，包含更新和新增操作
+	 * 
+	 * @param user
+	 * 		保存信息
+	 * @return User
+	 * 		返回保存后的用户信息
+	 */
 	public User persist(User user) {
 		return userRepository.save(user);
 	}

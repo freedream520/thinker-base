@@ -9,6 +9,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 
+/**
+ * 抽象类，提取公共映射字段
+ * 
+ * @author 刘佳兴
+ */
 @MappedSuperclass
 public abstract class AbstractEntity implements Serializable {
 

@@ -4,6 +4,11 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
+/**
+ * 用户实体类
+ * 
+ * @author 刘佳兴
+ */
 @Entity
 @Table(name = "base_user")
 public class User extends AbstractEntity {

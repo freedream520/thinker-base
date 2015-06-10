@@ -18,8 +18,8 @@ import com.github.slowrookie.service.UserService;
 
 /**
  * 用户管理
- * @author liujx
- *
+ * 
+ * @author 刘佳兴
  */
 @RestController
 public class UserController {
@@ -28,15 +28,22 @@ public class UserController {
 	private UserService userService;
 
 	/**
-	 * <b>查询获取users支持全属性条件查询</b>
+	 * 查询获取users支持全属性条件查询
+	 * 
 	 * @param userQuery
+	 * 		用户查询对象，通过JSON传递
 	 * @param page
+	 * 		第几页
 	 * @param size
+	 * 		每页数据量
 	 * @param order
-	 * @return
+	 * 		排序
+	 * @return Page<User>
+	 * 		返回分页数据
 	 */
 	@RequestMapping(value = "/users", method = RequestMethod.POST, produces = "application/json")
-	@ResponseBody Page<User> findAll(@RequestBody(required = false) UserQuery userQuery, @RequestParam(required = false) Integer page,
+	@ResponseBody 
+	public Page<User> findAll(@RequestBody(required = false) UserQuery userQuery, @RequestParam(required = false) Integer page,
 			@RequestParam(required = false) Integer size, @RequestParam(required = false) String order) {
 		
 		PageRequest pageRequest = null;
@@ -53,13 +60,18 @@ public class UserController {
 	
 	
 	/**
-	 * <b>保存或者更新</b>
+	 * 保存或者更新
+	 * 
 	 * @param user
-	 * @return
+	 * 		序列化的User对象
+	 * @return User
+	 * 		返回更新完成后的User
 	 */
 	@RequestMapping(value = "/users", method = RequestMethod.PUT, produces = "application/json")
-	@ResponseBody User persist(@RequestBody User user){
+	@ResponseBody 
+	public User persist(@RequestBody User user){
 		return userService.persist(user);
 	}
+	
 	
 }

@@ -6,9 +6,9 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.context.web.SpringBootServletInitializer;
 
 /**
- * 启动
- * @author liujx
- *
+ * Application是初始化启动类
+ * 
+ * @author 刘佳兴
  */
 @SpringBootApplication
 public class Application extends SpringBootServletInitializer{
