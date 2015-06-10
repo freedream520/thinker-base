@@ -1,6 +1,7 @@
 package com.github.slowrookie.web;
 
-import org.springframework.beans.BeanUtils;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -27,12 +28,10 @@ public class UserController {
 	private UserService userService;
 
 	@RequestMapping(value = "/users", method = RequestMethod.GET, produces = "application/json")
-	@ResponseBody Page<User> findAll(@RequestBody(required = false) User user, @RequestParam(required = false) Integer page,
-			@RequestParam(required = false) Integer size) {
+	@ResponseBody Page<User> findAll(@RequestParam(required = false) Map<String, String> rquestParamMap) {
 		UserQuery userQuery = new UserQuery();
-		BeanUtils.copyProperties(user, userQuery);
-		if(page == null) page = 0;
-		if(size == null) size = 100;
+		int page = 0;
+		int size = 0;
 		PageRequest pageRequest = new PageRequest(page, size);
 		
 		return userService.findAll(userQuery, pageRequest);

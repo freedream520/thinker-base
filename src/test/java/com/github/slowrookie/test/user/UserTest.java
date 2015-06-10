@@ -3,6 +3,8 @@ package com.github.slowrookie.test.user;
 import static org.junit.Assert.assertEquals;
 
 import java.sql.Timestamp;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.junit.Test;
 import org.springframework.http.HttpEntity;
@@ -21,13 +23,11 @@ public class UserTest extends AbstractTest{
 		
 		String url = HOST + "users?page=0&size=10";
 		
-//		Map<String, String> user = new HashMap<>();
-//		user.put("realName", "liujx");
-		UserQuery userQuery = new UserQuery();
-		userQuery.setRealName("liujx");
+		Map<String, String> params = new HashMap<String, String>();
+		params.put("realName", "liujx");
 		
 		ResponseEntity<String> response = rest.exchange(url, HttpMethod.GET, 
-				new HttpEntity<>(userQuery, httpHeaders), String.class);
+				new HttpEntity<>(params, httpHeaders), String.class);
 		
 		assertEquals(HttpStatus.OK, response.getStatusCode());
 		
