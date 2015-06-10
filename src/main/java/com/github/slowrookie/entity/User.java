@@ -17,7 +17,9 @@ public class User extends AbstractEntity {
 
 	private String loginName;
 	
-	protected String realName;
+	protected String lastname;
+	
+	protected String firstname;
 	
 	private String password;
 	
@@ -33,11 +35,12 @@ public class User extends AbstractEntity {
 		super();
 	}
 
-	public User(String loginName, String realName, String password,
+	public User(String loginName, String lastname, String firstname, String password,
 			Integer gender, String email, String mobile, String telephone) {
 		super();
 		this.loginName = loginName;
-		this.realName = realName;
+		this.lastname = lastname;
+		this.firstname = firstname;
 		this.password = password;
 		this.gender = gender;
 		this.email = email;
@@ -54,13 +57,23 @@ public class User extends AbstractEntity {
 		this.loginName = loginName;
 	}
 
-	@Column(name = "real_name_", length = 20)
-	public String getRealName() {
-		return realName;
+
+	@Column(name = "last_name_", length = 10)
+	public String getLastname() {
+		return lastname;
 	}
 
-	public void setRealName(String realName) {
-		this.realName = realName;
+	public void setLastname(String lastname) {
+		this.lastname = lastname;
+	}
+
+	@Column(name="first_name_", length = 20)
+	public String getFirstname() {
+		return firstname;
+	}
+
+	public void setFirstname(String firstname) {
+		this.firstname = firstname;
 	}
 
 	@Column(name = "password_", length = 40)

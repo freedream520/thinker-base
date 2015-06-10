@@ -26,8 +26,8 @@ public class UserQuery extends User implements Specification<User> {
 			CriteriaBuilder cb) {
 		List<Predicate> predicates = new ArrayList<Predicate>();
 		
-		if(!StringUtils.isEmpty(this.getRealName())) {
-			predicates.add(cb.like(root.get("realName").as(String.class), "%" + this.getRealName() + "%"));
+		if(!StringUtils.isEmpty(this.getLoginName())) {
+			predicates.add(cb.like(root.get("loginName").as(String.class), "%" + this.getLoginName() + "%"));
 		}
 		
 		if(null != this.getId()) {
