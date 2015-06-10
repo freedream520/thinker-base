@@ -19,6 +19,11 @@ public class Application extends SpringBootServletInitializer{
 		return application.sources(Application.class);
 	}
 	
+	/**
+	 * 系统启动
+	 * 
+	 * @param args
+	 */
 	public static void main(String[] args) {
 		SpringApplication.run(Application.class, args);
 	}
