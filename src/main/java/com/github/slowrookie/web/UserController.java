@@ -1,18 +1,14 @@
 package com.github.slowrookie.web;
 
-import java.util.Map;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.github.slowrookie.common.QueryParameterUtils;
+import com.github.slowrookie.common.PageParamater;
 import com.github.slowrookie.entity.User;
 import com.github.slowrookie.entity.query.UserQuery;
 import com.github.slowrookie.service.UserService;
@@ -44,14 +40,8 @@ public class UserController {
 	 */
 	@RequestMapping(value = "/users", method = RequestMethod.GET, produces = "application/json")
 	@ResponseBody 
-	public Page<User> findAll(@RequestParam(required = false) Map<String, String> params) {
-		//获取分页信息
-		Pageable pageable = QueryParameterUtils.getPageable(params);
-		//填充查询对象
-		UserQuery userQuery = new UserQuery();
-		QueryParameterUtils.getSpecification(params, userQuery);
-		
-		return userService.findAll(userQuery, pageable);
+	public Page<User> findAll(PageParamater pageParamater, UserQuery userQuery) {
+		return userService.findAll(userQuery, pageParamater.getPageRequest());
 	}
 	
 	

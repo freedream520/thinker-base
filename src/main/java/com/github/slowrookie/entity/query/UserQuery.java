@@ -26,30 +26,24 @@ public class UserQuery extends User implements Specification<User> {
 			CriteriaBuilder cb) {
 		List<Predicate> predicates = new ArrayList<Predicate>();
 		
-		if(!StringUtils.isEmpty(this.getLoginName())) {
-			predicates.add(cb.like(root.get("loginName").as(String.class), "%" + this.getLoginName() + "%"));
+		if(!StringUtils.isEmpty(this.loginName)) {
+			predicates.add(cb.like(root.get("loginName").as(String.class), "%" + this.loginName + "%"));
 		}
 		
-		if(null != this.getId()) {
-			predicates.add(cb.equal(root.get("id"), this.getId()));
+		if(null != this.id) {
+			predicates.add(cb.equal(root.get("id"), this.id));
 		}
 		
-		if(null != this.getActivity()) {
-			predicates.add(cb.equal(root.get("activity"), this.getActivity()));
+		if(null != this.activity) {
+			predicates.add(cb.equal(root.get("activity"), this.activity));
 		}
 		
-		if(null != this.getGender()) {
-			predicates.add(cb.equal(root.get("gender"), this.getGender()));
-		}
-		
-		if(null != this.getLoginName()){
-			predicates.add(cb.equal(root.get("loginName"), this.getLoginName()));
+		if(null != this.gender) {
+			predicates.add(cb.equal(root.get("gender"), this.gender));
 		}
 		
 		Predicate[] pre = new Predicate[predicates.size()];
 		return query.where(predicates.toArray(pre)).getRestriction();
 	}
-
-	
 	
 }

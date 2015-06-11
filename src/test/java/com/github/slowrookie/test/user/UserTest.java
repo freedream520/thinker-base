@@ -3,8 +3,6 @@ package com.github.slowrookie.test.user;
 import static org.junit.Assert.assertEquals;
 
 import java.sql.Timestamp;
-import java.util.HashMap;
-import java.util.Map;
 
 import org.junit.Test;
 import org.springframework.http.HttpEntity;
@@ -20,13 +18,11 @@ public class UserTest extends AbstractTest{
 	@Test
 	public void getUsers() throws Exception {
 		
-		String url = HOST + "users?page=0&size=10&order=realName,createdBy";
+		String url = HOST + "users?page=0&size=10&sort=createdBy";
+		url += "&loginName=liujx";
 		
-		Map<String, String> params = new HashMap<String, String>();
-		params.put("realName", "liujx");
-		
-		ResponseEntity<String> response = rest.exchange(url, HttpMethod.POST, 
-				new HttpEntity<>(params, httpHeaders), String.class);
+		ResponseEntity<String> response = rest.exchange(url, HttpMethod.GET, 
+				new HttpEntity<>( httpHeaders), String.class);
 		
 		assertEquals(HttpStatus.OK, response.getStatusCode());
 		
@@ -43,9 +39,9 @@ public class UserTest extends AbstractTest{
 		Timestamp d = new Timestamp(System.currentTimeMillis()); 
 		user.setActivity(1);
 		user.setCreatedBy(1L);
-		user.setCreatedTime(d);
+		user.setCreationDate(d);
 		user.setLastUpdateBy(1L);
-		user.setLastUpdateTime(d);
+		user.setLastUpdateDate(d);
 		
 		ResponseEntity<String> response = rest.exchange(url, HttpMethod.PUT, 
 				new HttpEntity<>(user, httpHeaders), String.class);

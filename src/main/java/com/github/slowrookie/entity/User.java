@@ -15,21 +15,21 @@ public class User extends AbstractEntity {
 
 	private static final long serialVersionUID = 1L;
 
-	private String loginName;
+	protected String loginName;
 	
 	protected String lastname;
 	
 	protected String firstname;
 	
-	private String password;
+	protected String password;
 	
-	private Integer gender;
+	protected Integer gender;
 	
-	private String email;
+	protected String email;
 	
-	private String mobile;
+	protected String mobile;
 	
-	private String telephone;
+	protected String telephone;
 
 	public User() {
 		super();
