@@ -29,12 +29,8 @@ public class UserController {
 	 * 
 	 * @param userQuery
 	 * 		用户查询对象，通过JSON传递
-	 * @param page
-	 * 		第几页
-	 * @param size
-	 * 		每页数据量
-	 * @param order
-	 * 		排序
+	 * @param pageParamater
+	 * 		分页查询条件对象
 	 * @return Page<User>
 	 * 		返回分页数据
 	 */
