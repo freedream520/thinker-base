@@ -24,6 +24,16 @@ public class UserService {
 	private UserRepository userRepository;
 
 	/**
+	 * 根据id查找
+	 * 
+	 * @param id
+	 * @return
+	 */
+	public User findOne(Long id){
+		return userRepository.getOne(id);
+	}
+	
+	/**
 	 * 查询所有
 	 * 
 	 * @param userQuery

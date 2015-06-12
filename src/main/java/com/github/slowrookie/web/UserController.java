@@ -24,6 +24,17 @@ public class UserController {
 
 	@Autowired
 	private UserService userService;
+	
+	/**
+	 * 根据主键id查询
+	 * 
+	 * @param id
+	 * @return
+	 */
+	@RequestMapping(value = "/user/{id}", method = RequestMethod.GET, produces = "application/json")
+	public User getUser(@PathVariable("id") Long id) {
+		return userService.findOne(id);
+	}
 
 	/**
 	 * 查询获取users支持全属性条件查询

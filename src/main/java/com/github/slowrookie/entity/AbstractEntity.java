@@ -25,7 +25,7 @@ public abstract class AbstractEntity implements Serializable {
 	
 	protected Timestamp creationDate;
 	
-	protected Long lastUpdateBy;
+	protected Long lastUpdatedBy;
 	
 	protected Timestamp lastUpdateDate;
 	
@@ -60,13 +60,13 @@ public abstract class AbstractEntity implements Serializable {
 		this.creationDate = creationDate;
 	}
 
-	@Column(name="last_update_by_", nullable = false)
-	public Long getLastUpdateBy() {
-		return lastUpdateBy;
+	@Column(name="last_updated_by_", nullable = false)
+	public Long getLastUpdatedBy() {
+		return lastUpdatedBy;
 	}
 
-	public void setLastUpdateBy(Long lastUpdateBy) {
-		this.lastUpdateBy = lastUpdateBy;
+	public void setLastUpdatedBy(Long lastUpdateBy) {
+		this.lastUpdatedBy = lastUpdateBy;
 	}
 
 	@Column(name="last_update_date_", nullable = false)
