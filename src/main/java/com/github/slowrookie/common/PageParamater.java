@@ -11,12 +11,16 @@ import org.springframework.data.domain.Sort.Direction;
  */
 public class PageParamater {
 	
+	//分页默认从0开始
 	private Integer page = 0;
 	
+	//每页大小
 	private Integer size = 1000;
 	
+	//排序字段
 	private String sort = null;
 	
+	//升序或者降序，此字段为空表示升序，否则为降序
 	private String direction = null;
 	
 	public Integer getPage() {
@@ -52,7 +56,9 @@ public class PageParamater {
 	}
 	
 	public Pageable getPageRequest(){
-		return new PageRequest(page, size, direction == null ? Direction.ASC : Direction.DESC, sort == null ? null : sort.split(","));
+		return	sort == null 
+				? new PageRequest(page, size)
+				: new PageRequest(page, size, direction == null ? Direction.ASC : Direction.DESC, sort.split(","));
 	}
 	
 }

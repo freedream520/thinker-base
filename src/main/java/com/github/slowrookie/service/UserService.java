@@ -48,4 +48,14 @@ public class UserService {
 	public User persist(User user) {
 		return userRepository.save(user);
 	}
+	
+	/**
+	 * 删除用户数据
+	 * 
+	 * @param id
+	 * 		用户的主键id
+	 */
+	public void remove(Long id){
+		userRepository.delete(id);
+	}
 }

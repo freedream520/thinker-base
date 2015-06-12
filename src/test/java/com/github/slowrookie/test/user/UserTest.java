@@ -18,15 +18,20 @@ public class UserTest extends AbstractTest{
 	@Test
 	public void getUsers() throws Exception {
 		
-		String url = HOST + "users?page=0&size=10&sort=createdBy";
+		String url = HOST + "users?page=0&size=10&sort=createdBy0";
 		url += "&loginName=liujx";
-		
-		ResponseEntity<String> response = rest.exchange(url, HttpMethod.GET, 
-				new HttpEntity<>( httpHeaders), String.class);
-		
-		assertEquals(HttpStatus.OK, response.getStatusCode());
-		
-		System.out.println(response.getBody());
+		try{			
+			ResponseEntity<String> response = rest.exchange(url, HttpMethod.GET, 
+					new HttpEntity<>( httpHeaders), String.class);
+			
+			assertEquals(HttpStatus.OK, response.getStatusCode());
+			
+			System.out.println(response.getBody());
+		} catch(Exception e) {
+			
+			e.printStackTrace();
+			
+		}
 		
 	}
 	

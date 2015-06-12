@@ -2,6 +2,7 @@ package com.github.slowrookie.web;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -53,6 +54,16 @@ public class UserController {
 	@ResponseBody 
 	public User persist(@RequestBody User user){
 		return userService.persist(user);
+	}
+	
+	/**
+	 * 删除用户信息
+	 * 
+	 * @param id
+	 */
+	@RequestMapping(value = "/user/{id}", method = RequestMethod.DELETE)
+	public void remove(@PathVariable("id") Long id){
+		userService.remove(id);
 	}
 	
 	
