@@ -48,7 +48,7 @@ public class User extends AbstractEntity {
 		this.telephone = telephone;
 	}
 
-	@Column(name = "login_name_", length = 20)
+	@Column(length = 20)
 	public String getLoginName() {
 		return loginName;
 	}
@@ -58,7 +58,7 @@ public class User extends AbstractEntity {
 	}
 
 
-	@Column(name = "last_name_", length = 10)
+	@Column(length = 10)
 	public String getLastname() {
 		return lastname;
 	}
@@ -67,7 +67,7 @@ public class User extends AbstractEntity {
 		this.lastname = lastname;
 	}
 
-	@Column(name="first_name_", length = 20)
+	@Column(length = 20)
 	public String getFirstname() {
 		return firstname;
 	}
@@ -76,7 +76,7 @@ public class User extends AbstractEntity {
 		this.firstname = firstname;
 	}
 
-	@Column(name = "password_", length = 40)
+	@Column(length = 40)
 	public String getPassword() {
 		return password;
 	}
@@ -85,7 +85,6 @@ public class User extends AbstractEntity {
 		this.password = password;
 	}
 
-	@Column(name = "gender_")
 	public Integer getGender() {
 		return gender;
 	}
@@ -94,7 +93,7 @@ public class User extends AbstractEntity {
 		this.gender = gender;
 	}
 
-	@Column(name = "email_", length = 50)
+	@Column(length = 50)
 	public String getEmail() {
 		return email;
 	}
@@ -103,7 +102,7 @@ public class User extends AbstractEntity {
 		this.email = email;
 	}
 
-	@Column(name = "mobile_", length = 20)
+	@Column(length = 20)
 	public String getMobile() {
 		return mobile;
 	}
@@ -112,7 +111,7 @@ public class User extends AbstractEntity {
 		this.mobile = mobile;
 	}
 
-	@Column(name = "telephone_", length = 20)
+	@Column(length = 20)
 	public String getTelephone() {
 		return telephone;
 	}

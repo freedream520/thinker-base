@@ -2,6 +2,7 @@ package com.github.slowrookie.entity;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
@@ -23,16 +24,16 @@ public abstract class AbstractEntity implements Serializable {
 
 	protected Long createdBy;
 	
-	protected Timestamp creationDate;
+	protected Date creationDate;
 	
-	protected Long lastUpdatedBy;
+	protected Long lastModifiedBy;
 	
-	protected Timestamp lastUpdateDate;
+	protected Date lastModifiedDate;
 	
 	protected Integer activity;
 	
 	@Id
-	@Column(name = "id_", nullable = false)
+	@Column(nullable = false)
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	public Long getId() {
 		return id;
@@ -42,7 +43,7 @@ public abstract class AbstractEntity implements Serializable {
 		this.id = id;
 	}
 
-	@Column(name = "created_by_", nullable = false)
+	@Column(nullable = false)
 	public Long getCreatedBy() {
 		return createdBy;
 	}
@@ -51,8 +52,8 @@ public abstract class AbstractEntity implements Serializable {
 		this.createdBy = createdBy;
 	}
 
-	@Column(name="creation_date_", nullable = false)
-	public Timestamp getCreationDate() {
+	@Column(nullable = false)
+	public Date getCreationDate() {
 		return creationDate;
 	}
 
@@ -60,25 +61,23 @@ public abstract class AbstractEntity implements Serializable {
 		this.creationDate = creationDate;
 	}
 
-	@Column(name="last_updated_by_", nullable = false)
-	public Long getLastUpdatedBy() {
-		return lastUpdatedBy;
+	public Long getLastModifiedBy() {
+		return lastModifiedBy;
 	}
 
-	public void setLastUpdatedBy(Long lastUpdateBy) {
-		this.lastUpdatedBy = lastUpdateBy;
+	public void setLastModifiedBy(Long lastModifiedBy) {
+		this.lastModifiedBy = lastModifiedBy;
 	}
 
-	@Column(name="last_update_date_", nullable = false)
-	public Timestamp getLastUpdateDate() {
-		return lastUpdateDate;
+	public Date getLastModifiedDate() {
+		return lastModifiedDate;
 	}
 
-	public void setLastUpdateDate(Timestamp lastUpdateDate) {
-		this.lastUpdateDate = lastUpdateDate;
+	public void setLastModifiedDate(Timestamp lastModifiedDate) {
+		this.lastModifiedDate = lastModifiedDate;
 	}
 
-	@Column(name="activity_", nullable = false)
+	@Column(nullable = false)
 	public Integer getActivity() {
 		return activity;
 	}

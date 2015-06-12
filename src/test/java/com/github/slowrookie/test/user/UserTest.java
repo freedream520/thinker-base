@@ -45,8 +45,8 @@ public class UserTest extends AbstractTest{
 		user.setActivity(1);
 		user.setCreatedBy(1L);
 		user.setCreationDate(d);
-		user.setLastUpdatedBy(1L);
-		user.setLastUpdateDate(d);
+		user.setLastModifiedBy(1L);
+		user.setLastModifiedDate(d);
 		
 		ResponseEntity<String> response = rest.exchange(url, HttpMethod.PUT, 
 				new HttpEntity<>(user, httpHeaders), String.class);
