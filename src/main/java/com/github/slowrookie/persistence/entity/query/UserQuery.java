@@ -1,4 +1,4 @@
-package com.github.slowrookie.entity.query;
+package com.github.slowrookie.persistence.entity.query;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,7 +11,7 @@ import javax.persistence.criteria.Root;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.util.StringUtils;
 
-import com.github.slowrookie.entity.User;
+import com.github.slowrookie.persistence.entity.User;
 
 /**
  * 用户查询条件拼写

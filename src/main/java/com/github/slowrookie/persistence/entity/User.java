@@ -1,8 +1,10 @@
-package com.github.slowrookie.entity;
+package com.github.slowrookie.persistence.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
+
+import com.github.slowrookie.persistence.AuditablePersistable;
 
 /**
  * 用户实体类
@@ -11,24 +13,32 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "base_user")
-public class User extends AbstractEntity {
+public class User extends AuditablePersistable {
 
 	private static final long serialVersionUID = 1L;
 
+	@Column(length = 20)
 	protected String loginName;
 	
+	@Column(length = 10)
 	protected String lastname;
 	
+	@Column(length = 20)
 	protected String firstname;
 	
+	@Column(length = 40)
 	protected String password;
 	
+	@Column(length = 20)
 	protected Integer gender;
 	
+	@Column(length = 50)
 	protected String email;
 	
+	@Column(length = 20)
 	protected String mobile;
 	
+	@Column(length = 20)
 	protected String telephone;
 
 	public User() {
@@ -48,7 +58,6 @@ public class User extends AbstractEntity {
 		this.telephone = telephone;
 	}
 
-	@Column(length = 20)
 	public String getLoginName() {
 		return loginName;
 	}
@@ -58,7 +67,6 @@ public class User extends AbstractEntity {
 	}
 
 
-	@Column(length = 10)
 	public String getLastname() {
 		return lastname;
 	}
@@ -67,7 +75,6 @@ public class User extends AbstractEntity {
 		this.lastname = lastname;
 	}
 
-	@Column(length = 20)
 	public String getFirstname() {
 		return firstname;
 	}
@@ -76,7 +83,7 @@ public class User extends AbstractEntity {
 		this.firstname = firstname;
 	}
 
-	@Column(length = 40)
+	
 	public String getPassword() {
 		return password;
 	}
@@ -93,7 +100,6 @@ public class User extends AbstractEntity {
 		this.gender = gender;
 	}
 
-	@Column(length = 50)
 	public String getEmail() {
 		return email;
 	}
@@ -102,7 +108,7 @@ public class User extends AbstractEntity {
 		this.email = email;
 	}
 
-	@Column(length = 20)
+	
 	public String getMobile() {
 		return mobile;
 	}
@@ -111,7 +117,6 @@ public class User extends AbstractEntity {
 		this.mobile = mobile;
 	}
 
-	@Column(length = 20)
 	public String getTelephone() {
 		return telephone;
 	}

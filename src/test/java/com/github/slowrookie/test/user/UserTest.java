@@ -4,13 +4,14 @@ import static org.junit.Assert.assertEquals;
 
 import java.sql.Timestamp;
 
+import org.joda.time.DateTime;
 import org.junit.Test;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
-import com.github.slowrookie.entity.User;
+import com.github.slowrookie.persistence.entity.User;
 import com.github.slowrookie.test.AbstractTest;
 
 public class UserTest extends AbstractTest{
@@ -40,13 +41,12 @@ public class UserTest extends AbstractTest{
 		String url = HOST + "users";
 		
 		User user = new User("liujx", "刘","佳兴", "3", 1, "liujiaxingemail@gmail.com", "17092080066", "00000000");
-		user.setId(1L);
-		Timestamp d = new Timestamp(System.currentTimeMillis()); 
+		user.setId(1L); 
 		user.setActivity(1);
 		user.setCreatedBy(1L);
-		user.setCreationDate(d);
+		user.setCreatedDate(new DateTime());
 		user.setLastModifiedBy(1L);
-		user.setLastModifiedDate(d);
+		user.setLastModifiedDate(new DateTime());
 		
 		ResponseEntity<String> response = rest.exchange(url, HttpMethod.PUT, 
 				new HttpEntity<>(user, httpHeaders), String.class);

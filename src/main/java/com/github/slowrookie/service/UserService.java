@@ -7,8 +7,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import com.github.slowrookie.entity.User;
-import com.github.slowrookie.entity.query.UserQuery;
+import com.github.slowrookie.persistence.entity.User;
+import com.github.slowrookie.persistence.entity.query.UserQuery;
 import com.github.slowrookie.repository.UserRepository;
 
 /**

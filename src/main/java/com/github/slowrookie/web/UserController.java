@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.github.slowrookie.common.PageParamater;
-import com.github.slowrookie.entity.User;
-import com.github.slowrookie.entity.query.UserQuery;
+import com.github.slowrookie.persistence.entity.User;
+import com.github.slowrookie.persistence.entity.query.UserQuery;
 import com.github.slowrookie.service.UserService;
 
 /**
