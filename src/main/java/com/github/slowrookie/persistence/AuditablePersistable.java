@@ -7,7 +7,7 @@ import org.joda.time.DateTime;
 import org.springframework.data.domain.Auditable;
 
 /**
- * 需要保存修改信息的映射父类
+ * 持久化映射父类
  * 
  * @author 刘佳兴
  */
