@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 public class ExceptionHandlerAdvice {
 
 	/**
-	 * 找不参数的错误处理
+	 * 参数的错误处理
 	 * 
 	 * @param e
 	 * @return
