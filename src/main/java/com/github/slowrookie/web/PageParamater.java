@@ -1,4 +1,4 @@
-package com.github.slowrookie.common;
+package com.github.slowrookie.web;
 
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
