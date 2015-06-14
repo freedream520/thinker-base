@@ -1,6 +1,6 @@
-# thinker-base
-#基础信息（用户管理、组织管理、权限管理）
-## 项目结构 
+## thinker-base
+###基础信息（用户管理、组织管理、权限管理）
+###项目结构 
 * com.github.slowrookie.cfg    						基本的配置信息
 * com.github.slowrookie.common 						公用类和方法
 * com.github.slowrookie.exception 					统一异常捕获抛出处理（方便调用者知道错误的具体信息）
