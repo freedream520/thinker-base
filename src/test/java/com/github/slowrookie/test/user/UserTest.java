@@ -2,14 +2,13 @@ package com.github.slowrookie.test.user;
 
 import static org.junit.Assert.assertEquals;
 
-import java.sql.Timestamp;
-
 import org.joda.time.DateTime;
 import org.junit.Test;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.client.HttpClientErrorException;
 
 import com.github.slowrookie.persistence.entity.User;
 import com.github.slowrookie.test.AbstractTest;
@@ -21,17 +20,16 @@ public class UserTest extends AbstractTest{
 		
 		String url = HOST + "users?page=0&size=10&sort=createdBy0";
 		url += "&loginName=liujx";
-		try{			
+		try{
 			ResponseEntity<String> response = rest.exchange(url, HttpMethod.GET, 
 					new HttpEntity<>( httpHeaders), String.class);
 			
 			assertEquals(HttpStatus.OK, response.getStatusCode());
 			
 			System.out.println(response.getBody());
-		} catch(Exception e) {
-			
-			e.printStackTrace();
-			
+		}catch (HttpClientErrorException e){
+			//接受异常信息，并告知调用者
+			System.out.println(e.getResponseBodyAsString());
 		}
 		
 	}
