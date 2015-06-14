@@ -9,6 +9,7 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.HttpClientErrorException;
+import org.springframework.web.client.RestClientException;
 
 import com.github.slowrookie.persistence.entity.User;
 import com.github.slowrookie.test.AbstractTest;
@@ -18,7 +19,7 @@ public class UserTest extends AbstractTest{
 	@Test
 	public void getUsers() throws Exception {
 		
-		String url = HOST + "users?page=0&size=10&sort=createdBy0";
+		String url = HOST + "users?page=0&size=10&sort=createdBy";
 		url += "&loginName=liujx";
 		try{
 			ResponseEntity<String> response = rest.exchange(url, HttpMethod.GET, 
@@ -39,19 +40,23 @@ public class UserTest extends AbstractTest{
 		String url = HOST + "users";
 		
 		User user = new User("liujx", "刘","佳兴", "3", 1, "liujiaxingemail@gmail.com", "17092080066", "00000000");
-		user.setId(1L); 
 		user.setActivity(1);
 		user.setCreatedBy(1L);
-		user.setCreatedDate(new DateTime());
+		user.setCreatedDate(new DateTime().toDate());
 		user.setLastModifiedBy(1L);
-		user.setLastModifiedDate(new DateTime());
+		user.setLastModifiedDate(new DateTime().toDate());
 		
-		ResponseEntity<String> response = rest.exchange(url, HttpMethod.PUT, 
-				new HttpEntity<>(user, httpHeaders), String.class);
 		
-		assertEquals(HttpStatus.OK, response.getStatusCode());
-		
-		System.out.println(response.getBody());
+		try {
+			ResponseEntity<String> response = rest.exchange(url, HttpMethod.PUT, 
+					new HttpEntity<>(user, httpHeaders), String.class);
+			
+			assertEquals(HttpStatus.OK, response.getStatusCode());
+			
+			System.out.println(response.getBody());
+		} catch (HttpClientErrorException e) {
+			System.out.println(e.getResponseBodyAsString());
+		}
 		
 	}
 	

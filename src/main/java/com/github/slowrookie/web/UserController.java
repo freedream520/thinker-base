@@ -47,8 +47,7 @@ public class UserController {
 	 * 		返回分页数据
 	 */
 	@RequestMapping(value = "/users", method = RequestMethod.GET, produces = "application/json")
-	@ResponseBody 
-	public Page<User> findAll(PageParamater pageParamater, UserQuery userQuery) {
+	@ResponseBody public Page<User> findAll(PageParamater pageParamater, UserQuery userQuery) {
 		return userService.findAll(userQuery, pageParamater.getPageRequest());
 	}
 	
@@ -62,8 +61,7 @@ public class UserController {
 	 * 		返回更新完成后的User
 	 */
 	@RequestMapping(value = "/users", method = RequestMethod.PUT, produces = "application/json")
-	@ResponseBody 
-	public User persist(@RequestBody User user){
+	@ResponseBody public User persist(@RequestBody User user){
 		return userService.persist(user);
 	}
 	

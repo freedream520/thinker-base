@@ -1,10 +1,15 @@
 package com.github.slowrookie.persistence;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
 
-import org.joda.time.DateTime;
-import org.springframework.data.domain.Auditable;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonFormat.Shape;
 
 /**
  * 持久化映射父类
@@ -12,62 +17,59 @@ import org.springframework.data.domain.Auditable;
  * @author 刘佳兴
  */
 @MappedSuperclass
-public abstract class AuditablePersistable extends IdentityPersistable implements Auditable<Long, Long>{
+public abstract class AuditablePersistable extends IdentityPersistable {
 
 	private static final long serialVersionUID = 1L;
 
+	@NotNull
 	@Column(nullable = false)
 	protected Long createdBy;
 	
 	@Column(nullable = false)
-	protected DateTime createdDate;
+	@Temporal(TemporalType.TIMESTAMP)
+	protected Date createdDate;
 	
 	@Column(nullable = false)
 	protected Long lastModifiedBy;
 	
 	@Column(nullable = false)
-	protected DateTime lastModifiedDate;
+	@Temporal(TemporalType.TIMESTAMP)
+	protected Date lastModifiedDate;
 	
 	@Column(nullable = false)
 	protected Integer activity;
 
-	@Override
 	public Long getCreatedBy() {
 		return createdBy;
 	}
 
-	@Override
 	public void setCreatedBy(Long createdBy) {
 		this.createdBy = createdBy;
 	}
 
-	@Override
-	public DateTime getCreatedDate() {
+	@JsonFormat(shape = Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
+	public Date getCreatedDate() {
 		return createdDate;
 	}
 
-	@Override
-	public void setCreatedDate(DateTime creationDate) {
+	public void setCreatedDate(Date creationDate) {
 		this.createdDate = creationDate;
 	}
 
-	@Override
 	public Long getLastModifiedBy() {
 		return lastModifiedBy;
 	}
 
-	@Override
 	public void setLastModifiedBy(Long lastModifiedBy) {
 		this.lastModifiedBy = lastModifiedBy;
 	}
 
-	@Override
-	public DateTime getLastModifiedDate() {
+	@JsonFormat(shape = Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
+	public Date getLastModifiedDate() {
 		return lastModifiedDate;
 	}
 
-	@Override
-	public void setLastModifiedDate(DateTime lastModifiedDate) {
+	public void setLastModifiedDate(Date lastModifiedDate) {
 		this.lastModifiedDate = lastModifiedDate;
 	}
 
