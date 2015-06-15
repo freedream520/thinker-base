@@ -25,17 +25,21 @@ public abstract class AuditablePersistable extends IdentityPersistable {
 	@Column(nullable = false)
 	protected Long createdBy;
 	
+	@NotNull
 	@Column(nullable = false)
 	@Temporal(TemporalType.TIMESTAMP)
 	protected Date createdDate;
 	
+	@NotNull
 	@Column(nullable = false)
 	protected Long lastModifiedBy;
 	
+	@NotNull
 	@Column(nullable = false)
 	@Temporal(TemporalType.TIMESTAMP)
 	protected Date lastModifiedDate;
 	
+	@NotNull
 	@Column(nullable = false)
 	protected Integer activity;
 
