@@ -37,7 +37,7 @@ public class UserTest extends AbstractTest{
 	public void saveUser(){
 		String url = HOST + "users";
 		
-		User user = new User("liujx", "刘","佳兴", null, 1, "liujiaxingemail@gmail.com", "17092080066", "00000000");
+		User user = new User("liujx", "刘","佳兴", "3", 1, "liujiaxingemail@gmail.com", "17092080066", "00000000");
 		
 		try {
 			ResponseEntity<String> response = rest.exchange(url, HttpMethod.PUT, 
