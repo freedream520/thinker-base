@@ -51,7 +51,7 @@ public class ExceptionHandlerAdvice {
 		Set<ConstraintViolation<?>> constraintViolations = e.getConstraintViolations();
 		String message = "";
 		for (ConstraintViolation<?> constraintViolation : constraintViolations) {
-			message += constraintViolation.getPropertyPath() + constraintViolation.getMessage();
+			message += constraintViolation.getPropertyPath() + constraintViolation.getMessage() + "; ";
 		}
 		return new ErrorInformation(HttpStatus.NOT_FOUND.value(), message);
 	}

@@ -41,7 +41,7 @@ public abstract class AuditablePersistable extends IdentityPersistable {
 	
 	@NotNull
 	@Column(nullable = false)
-	protected Integer activity;
+	protected Integer activity = 1;
 
 	public Long getCreatedBy() {
 		return createdBy;

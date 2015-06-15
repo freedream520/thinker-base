@@ -2,7 +2,6 @@ package com.github.slowrookie.test.user;
 
 import static org.junit.Assert.assertEquals;
 
-import org.joda.time.DateTime;
 import org.junit.Test;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
@@ -38,13 +37,7 @@ public class UserTest extends AbstractTest{
 	public void saveUser(){
 		String url = HOST + "users";
 		
-		User user = new User("liujx", "刘","佳兴", "3", 1, "liujiaxingemail@gmail.com", "17092080066", "00000000");
-		user.setActivity(1);
-		user.setCreatedBy(1L);
-		user.setCreatedDate(new DateTime().toDate());
-		user.setLastModifiedBy(1L);
-		user.setLastModifiedDate(new DateTime().toDate());
-		
+		User user = new User("liujx", "刘","佳兴", null, 1, "liujiaxingemail@gmail.com", "17092080066", "00000000");
 		
 		try {
 			ResponseEntity<String> response = rest.exchange(url, HttpMethod.PUT, 

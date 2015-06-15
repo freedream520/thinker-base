@@ -3,6 +3,7 @@ package com.github.slowrookie.persistence.entity;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 import com.github.slowrookie.persistence.AuditablePersistable;
 
@@ -26,6 +27,7 @@ public class User extends AuditablePersistable {
 	@Column(length = 20)
 	protected String firstname;
 	
+	@NotNull
 	@Column(length = 40)
 	protected String password;
 	

@@ -34,7 +34,7 @@ public abstract class IdentityPersistable implements Persistable<Long> {
 
 	@Override
 	public boolean isNew() {
-		if(id != null) return true;
+		if(id == null) return true;
 		return false;
 	}
 	
