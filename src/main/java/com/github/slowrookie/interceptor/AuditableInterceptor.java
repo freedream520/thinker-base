@@ -26,7 +26,7 @@ public class AuditableInterceptor {
 	 * @param joinPoint
 	 * 		切入点对象
 	 */
-	@Before("execution(* com..*Service.*persist(..))")
+	@Before("execution(* com..*Service.*save*(..))")
 	public void beforeSave(JoinPoint joinPoint) {
 		if(null != joinPoint.getArgs()){
 			setAuditables(Arrays.asList(joinPoint.getArgs()));
@@ -37,7 +37,7 @@ public class AuditableInterceptor {
 	private void setAuditables(Collection<Object> elements){
 		for (Object element : elements) {
 			setAuditable(element);
-			if(element instanceof Collection){
+			if(element instanceof Iterable){
 				setAuditables((Collection)element);
 			}
 		}

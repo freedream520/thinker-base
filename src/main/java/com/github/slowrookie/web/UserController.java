@@ -1,5 +1,7 @@
 package com.github.slowrookie.web;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -32,9 +34,43 @@ public class UserController {
 	 */
 	@RequestMapping(value = "/user/{id}", method = RequestMethod.GET, produces = "application/json")
 	public User getUser(@PathVariable("id") Long id) {
-		return userService.findOne(id);
+		return userService.getOne(id);
 	}
-
+	
+	/**
+	 * 删除用户信息
+	 * 
+	 * @param id
+	 */
+	@RequestMapping(value = "/user/{id}", method = RequestMethod.DELETE)
+	public void remove(@PathVariable("id") Long id){
+		userService.delete(id);
+	}
+	
+	/**
+	 * 保存或者更新
+	 * 
+	 * @param user
+	 * 		序列化的User对象
+	 * @return User
+	 * 		返回更新完成后的User
+	 */
+	@RequestMapping(value = "/users", method = RequestMethod.PUT, produces = "application/json")
+	@ResponseBody public User persist(@RequestBody User user){
+		return userService.save(user);
+	}
+	
+	/**
+	 * 批量插入
+	 * 
+	 * @param users
+	 * @return
+	 */
+	@RequestMapping(value = "/users", method = RequestMethod.POST, produces = "application/json")
+	@ResponseBody public List<User> persistAll(@RequestBody List<User> users){
+		return userService.save(users);
+	}
+	
 	/**
 	 * 查询获取users支持全属性条件查询
 	 * 
@@ -48,30 +84,6 @@ public class UserController {
 	@RequestMapping(value = "/users", method = RequestMethod.GET, produces = "application/json")
 	@ResponseBody public Page<User> findAll(PageParamater pageParamater, UserQuery userQuery) {
 		return userService.findAll(userQuery, pageParamater.getPageRequest());
-	}
-	
-	
-	/**
-	 * 保存或者更新
-	 * 
-	 * @param user
-	 * 		序列化的User对象
-	 * @return User
-	 * 		返回更新完成后的User
-	 */
-	@RequestMapping(value = "/users", method = RequestMethod.PUT, produces = "application/json")
-	@ResponseBody public User persist(@RequestBody User user){
-		return userService.persist(user);
-	}
-	
-	/**
-	 * 删除用户信息
-	 * 
-	 * @param id
-	 */
-	@RequestMapping(value = "/user/{id}", method = RequestMethod.DELETE)
-	public void remove(@PathVariable("id") Long id){
-		userService.remove(id);
 	}
 	
 	

@@ -1,5 +1,7 @@
 package com.github.slowrookie.service;
 
+import java.util.List;
+
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +31,7 @@ public class UserService {
 	 * @param id
 	 * @return
 	 */
-	public User findOne(Long id){
+	public User getOne(Long id){
 		return userRepository.getOne(id);
 	}
 	
@@ -55,8 +57,18 @@ public class UserService {
 	 * @return User
 	 * 		返回保存后的用户信息
 	 */
-	public User persist(User user) {
+	public User save(User user) {
 		return userRepository.save(user);
+	}
+	
+	/**
+	 * 批量插入数据
+	 * 
+	 * @param entities
+	 * @return
+	 */
+	public List<User> save(Iterable<User> entities){
+		return userRepository.save(entities);
 	}
 	
 	/**
@@ -65,7 +77,7 @@ public class UserService {
 	 * @param id
 	 * 		用户的主键id
 	 */
-	public void remove(Long id){
+	public void delete(Long id){
 		userRepository.delete(id);
 	}
 }

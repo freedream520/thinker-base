@@ -1,7 +1,11 @@
 package com.github.slowrookie.persistence.entity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.NotEmpty;
 
 import com.github.slowrookie.persistence.AuditablePersistable;
 
@@ -10,12 +14,16 @@ import com.github.slowrookie.persistence.AuditablePersistable;
  * 
  * @author 刘佳兴
  */
+
 @Entity
 @Table(name = "base_role")
 public class Role extends AuditablePersistable {
 	
 	private static final long serialVersionUID = 1L;
 	
+	@NotEmpty
+	@Size(max = 20)
+	@Column(length = 20)
 	protected String name;
 
 	public Role() {

@@ -21,11 +21,11 @@ public class UserRole extends IdentityPersistable {
 
 	@ManyToOne
 	@JoinColumn(foreignKey = @ForeignKey(name="id_"))
-	private User user;
+	protected User user;
 	
 	@ManyToOne
 	@JoinColumn(foreignKey = @ForeignKey(name="id_"))
-	private Role role;
+	protected Role role;
 
 	public User getUser() {
 		return user;
@@ -39,8 +39,5 @@ public class UserRole extends IdentityPersistable {
 	public void setRole(Role role) {
 		this.role = role;
 	}
-	
-	
-	
 	
 }
