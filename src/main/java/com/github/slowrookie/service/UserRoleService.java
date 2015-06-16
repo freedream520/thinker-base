@@ -27,7 +27,7 @@ public interface UserRoleService extends CrudService<UserRole> {
 	 * @param userId
 	 * @return
 	 */
-	public List<Role> getRoleByUser(Long userId);
+	public List<Role> findRoleByUser(Long userId);
 	
 	
 }

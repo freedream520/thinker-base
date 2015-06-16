@@ -32,8 +32,8 @@ public class UserController {
 	 * @param id
 	 * @return
 	 */
-	@RequestMapping(value = "/user/{id}", method = RequestMethod.GET, produces = "application/json")
-	public User getUser(@PathVariable("id") Long id) {
+	@RequestMapping(value = "/user/{id}", method = RequestMethod.GET)
+	@ResponseBody User getUser(@PathVariable("id") Long id) {
 		return userService.getOne(id);
 	}
 	
@@ -43,7 +43,7 @@ public class UserController {
 	 * @param id
 	 */
 	@RequestMapping(value = "/user/{id}", method = RequestMethod.DELETE)
-	public void remove(@PathVariable("id") Long id){
+	void remove(@PathVariable("id") Long id){
 		userService.delete(id);
 	}
 	
@@ -56,7 +56,7 @@ public class UserController {
 	 * 		返回更新完成后的User
 	 */
 	@RequestMapping(value = "/users", method = RequestMethod.PUT, produces = "application/json")
-	@ResponseBody public User persist(@RequestBody User user){
+	@ResponseBody User persist(@RequestBody User user){
 		return userService.save(user);
 	}
 	
@@ -67,7 +67,7 @@ public class UserController {
 	 * @return
 	 */
 	@RequestMapping(value = "/users", method = RequestMethod.POST, produces = "application/json")
-	@ResponseBody public List<User> persistAll(@RequestBody List<User> users){
+	@ResponseBody List<User> persistAll(@RequestBody List<User> users){
 		return userService.save(users);
 	}
 	
@@ -82,9 +82,8 @@ public class UserController {
 	 * 		返回分页数据
 	 */
 	@RequestMapping(value = "/users", method = RequestMethod.GET, produces = "application/json")
-	@ResponseBody public Page<User> findAll(PageParamater pageParamater, UserQuery userQuery) {
+	@ResponseBody Page<User> findAll(PageParamater pageParamater, UserQuery userQuery) {
 		return userService.findAll(userQuery, pageParamater.getPageRequest());
 	}
-	
 	
 }

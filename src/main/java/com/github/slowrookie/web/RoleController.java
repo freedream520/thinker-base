@@ -31,8 +31,8 @@ public class RoleController {
 	 * @param id
 	 * @return
 	 */
-	@RequestMapping(value = "/role/{id}", method = RequestMethod.GET, produces = "application/json")
-	public Role getUser(@PathVariable("id") Long id) {
+	@RequestMapping(value = "/role/{id}", method = RequestMethod.GET)
+	@ResponseBody Role getUser(@PathVariable("id") Long id) {
 		return roleService.getOne(id);
 	}
 	
@@ -42,7 +42,7 @@ public class RoleController {
 	 * @param id
 	 */
 	@RequestMapping(value = "/role/{id}", method = RequestMethod.DELETE)
-	public void remove(@PathVariable("id") Long id){
+	@ResponseBody void remove(@PathVariable("id") Long id){
 		roleService.delete(id);
 	}
 	
@@ -55,7 +55,7 @@ public class RoleController {
 	 * 		返回更新完成后的User
 	 */
 	@RequestMapping(value = "/roles", method = RequestMethod.PUT, produces = "application/json")
-	@ResponseBody public Role persist(@RequestBody Role role){
+	@ResponseBody Role persist(@RequestBody Role role){
 		return roleService.save(role);
 	}
 
