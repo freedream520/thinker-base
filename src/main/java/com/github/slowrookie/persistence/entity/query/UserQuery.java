@@ -18,8 +18,9 @@ import com.github.slowrookie.persistence.entity.User;
  * 
  * @author 刘佳兴
  */
-@SuppressWarnings("serial")
 public class UserQuery extends User implements Specification<User> {
+	
+	private static final long serialVersionUID = -7805576044463820714L;
 
 	@Override
 	public Predicate toPredicate(Root<User> root, CriteriaQuery<?> query,

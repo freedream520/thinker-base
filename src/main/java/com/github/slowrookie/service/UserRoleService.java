@@ -2,37 +2,32 @@ package com.github.slowrookie.service;
 
 import java.util.List;
 
-import javax.transaction.Transactional;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import com.github.slowrookie.persistence.entity.Role;
 import com.github.slowrookie.persistence.entity.User;
 import com.github.slowrookie.persistence.entity.UserRole;
-import com.github.slowrookie.repository.UserRoleRepository;
 
-@Service
-@Transactional
-public class UserRoleService {
+/**
+ * 用户角色方法扩展 
+ * 
+ * @author 刘佳兴
+ */
+public interface UserRoleService extends CrudService<UserRole> {
 
-	@Autowired
-	private UserRoleRepository userRoleRepository;
+	/**
+	 * 根据权限查组织
+	 * 
+	 * @param roleId
+	 * @return
+	 */
+	public List<User> findUserByRoleId(Long roleId);
 	
-	public List<User> findUserByRoleId(Long roleId){
-		return userRoleRepository.findUserByRoleId(roleId);
-	}
+	/**
+	 * 根据用户查权限
+	 * 
+	 * @param userId
+	 * @return
+	 */
+	public List<Role> getRoleByUser(Long userId);
 	
-	public List<Role> getRoleByUser(Long userId){
-		return userRoleRepository.findRoleByUserId(userId);
-	}
-	
-	public UserRole save(UserRole userRole){
-		return userRoleRepository.save(userRole);
-	}
-	
-	public void save(List<UserRole> userRoles){
-		
-	}
 	
 }

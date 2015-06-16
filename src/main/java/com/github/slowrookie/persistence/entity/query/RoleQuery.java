@@ -24,7 +24,7 @@ public class RoleQuery extends Role implements Specification<Role> {
 		List<Predicate> predicates = new ArrayList<Predicate>();
 		
 		if(!StringUtils.isEmpty(this.name)) {
-			predicates.add(cb.like(root.get("nam").as(String.class), "%" + this.name + "%"));
+			predicates.add(cb.like(root.get("name").as(String.class), "%" + this.name + "%"));
 		}
 		
 		if(null != this.id) {

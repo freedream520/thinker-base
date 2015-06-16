@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.github.slowrookie.persistence.entity.User;
 import com.github.slowrookie.persistence.entity.query.UserQuery;
-import com.github.slowrookie.service.UserService;
+import com.github.slowrookie.service.PageableService;
 
 /**
  * 用户管理
@@ -24,7 +24,7 @@ import com.github.slowrookie.service.UserService;
 public class UserController {
 
 	@Autowired
-	private UserService userService;
+	private PageableService<User> userService;
 	
 	/**
 	 * 根据主键id查询
