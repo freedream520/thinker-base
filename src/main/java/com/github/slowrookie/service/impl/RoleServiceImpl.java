@@ -27,8 +27,8 @@ public class RoleServiceImpl implements PageableService<Role> {
 	private RoleRepository roleRepository;
 
 	@Override
-	public Role getOne(Long id){
-		return roleRepository.getOne(id);
+	public Role findOne(Long id){
+		return roleRepository.findOne(id);
 	}
 	
 	public Role save(Role role) {

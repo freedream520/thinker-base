@@ -18,7 +18,7 @@ public class User extends AuditablePersistable {
 
 	private static final long serialVersionUID = 1L;
 
-	@Column(length = 20)
+	@Column(unique = true ,length = 20)
 	protected String loginName;
 	
 	@Column(length = 10)

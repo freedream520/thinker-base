@@ -2,11 +2,13 @@ package com.github.slowrookie.exception;
 
 import java.util.Set;
 
+import javax.persistence.EntityNotFoundException;
 import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.mapping.PropertyReferenceException;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -33,20 +35,20 @@ public class ExceptionHandlerAdvice {
 	 */
 	@ResponseStatus(HttpStatus.NOT_FOUND)
 	@ExceptionHandler(PropertyReferenceException.class)
-	@ResponseBody public ErrorInformation handleNoPropery(PropertyReferenceException e){
+	@ResponseBody ErrorInformation handleNoPropery(PropertyReferenceException e){
 		logger.error("handleNoPropery", e.fillInStackTrace());
 		return new ErrorInformation(HttpStatus.NOT_FOUND.value(), e.getMessage());
 	}
 	
 	/**
-	 * 返回hibernate字段校验信息
+	 * hibernate字段校验信息
 	 * 
 	 * @param e
 	 * @return
 	 */
 	@ResponseStatus(HttpStatus.NOT_FOUND)
 	@ExceptionHandler(ConstraintViolationException.class)
-	@ResponseBody public ErrorInformation handleHibernateValdation(ConstraintViolationException e){
+	@ResponseBody ErrorInformation handleHibernateValdation(ConstraintViolationException e){
 		logger.error("handleHibernateValdation", e.fillInStackTrace());
 		Set<ConstraintViolation<?>> constraintViolations = e.getConstraintViolations();
 		String message = "";
@@ -55,5 +57,32 @@ public class ExceptionHandlerAdvice {
 		}
 		return new ErrorInformation(HttpStatus.NOT_FOUND.value(), message);
 	}
+	
+	/**
+	 * 唯一主键
+	 * 
+	 * @param e
+	 * @return
+	 */
+	@ResponseStatus(HttpStatus.NOT_FOUND)
+	@ExceptionHandler(DataIntegrityViolationException.class)
+	@ResponseBody ErrorInformation handleDataIntegrityViolation(DataIntegrityViolationException e){
+		logger.error("handleDataIntegrityViolation", e.fillInStackTrace());
+		return new ErrorInformation(HttpStatus.NOT_FOUND.value(), e.getMessage());
+	}
+	
+	/**
+	 * 返回值为空
+	 * 
+	 * @param e
+	 * @return
+	 */
+	@ResponseStatus(HttpStatus.NOT_FOUND)
+	@ExceptionHandler(EntityNotFoundException.class)
+	@ResponseBody ErrorInformation handleEntityNotFound(EntityNotFoundException e){
+		logger.error("handleEntityNotFound", e.fillInStackTrace());
+		return new ErrorInformation(HttpStatus.NOT_FOUND.value(), e.getMessage());
+	}
+	
 	
 }

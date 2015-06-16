@@ -29,7 +29,7 @@ public class UserRoleController {
 	 */
 	@RequestMapping(value = "/userRole/{id}", method = RequestMethod.GET)
 	@ResponseBody UserRole getEntity(@PathVariable("id") Long id) {
-		return userRoleService.getOne(id);
+		return userRoleService.findOne(id);
 	}
 	
 	/**

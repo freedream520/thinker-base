@@ -33,7 +33,7 @@ public class RoleController {
 	 */
 	@RequestMapping(value = "/role/{id}", method = RequestMethod.GET)
 	@ResponseBody Role getUser(@PathVariable("id") Long id) {
-		return roleService.getOne(id);
+		return roleService.findOne(id);
 	}
 	
 	/**

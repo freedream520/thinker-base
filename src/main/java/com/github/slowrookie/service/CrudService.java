@@ -17,7 +17,7 @@ public interface CrudService<T extends IdentityPersistable> {
 	 * @param id
 	 * @return
 	 */
-	public T getOne(Long id);
+	public T findOne(Long id);
 	
 	/**
 	 * 持久化方法，包含更新和新增操作

@@ -27,8 +27,8 @@ public class UserServiceImpl implements PageableService<User> {
 	private UserRepository userRepository;
 
 	@Override
-	public User getOne(Long id){
-		return userRepository.getOne(id);
+	public User findOne(Long id){
+		return userRepository.findOne(id);
 	}
 	
 	@Override
