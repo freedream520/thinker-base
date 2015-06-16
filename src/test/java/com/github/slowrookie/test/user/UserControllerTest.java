@@ -15,7 +15,7 @@ import org.springframework.web.client.HttpClientErrorException;
 import com.github.slowrookie.persistence.entity.User;
 import com.github.slowrookie.test.AbstractTest;
 
-public class UserTest extends AbstractTest{
+public class UserControllerTest extends AbstractTest{
 
 	@Test
 	public void getUsers() throws Exception {
