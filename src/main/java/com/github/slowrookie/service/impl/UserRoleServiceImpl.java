@@ -5,6 +5,7 @@ import java.util.List;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import com.github.slowrookie.persistence.entity.Role;
@@ -22,12 +23,12 @@ public class UserRoleServiceImpl implements UserRoleService {
 	
 	@Override
 	public List<User> findUserByRoleId(Long roleId){
-		return userRoleRepository.findUserByRoleId(roleId);
+		return userRoleRepository.findByRoleId(roleId);
 	}
 	
 	@Override
 	public List<Role> findRoleByUser(Long userId){
-		return userRoleRepository.findRoleByUserId(userId);
+		return userRoleRepository.findByUserId(userId);
 	}
 	
 	@Override
@@ -53,6 +54,11 @@ public class UserRoleServiceImpl implements UserRoleService {
 	@Override
 	public void detete(Iterable<UserRole> entities) {
 		userRoleRepository.delete(entities);
+	}
+
+	@Override
+	public List<UserRole> findAll(Specification<UserRole> entityQuery) {
+		return userRoleRepository.findAll(entityQuery);
 	}
 	
 }

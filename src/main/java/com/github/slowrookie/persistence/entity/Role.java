@@ -23,7 +23,7 @@ public class Role extends AuditablePersistable {
 	
 	@NotEmpty
 	@Size(max = 20)
-	@Column(length = 20)
+	@Column(length = 20, unique = true)
 	protected String name;
 
 	public Role() {

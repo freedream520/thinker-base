@@ -20,11 +20,11 @@ public class UserRole extends IdentityPersistable {
 	private static final long serialVersionUID = 1L;
 
 	@ManyToOne
-	@JoinColumn(foreignKey = @ForeignKey(name="id_"))
+	@JoinColumn(foreignKey = @ForeignKey(name="id_"), nullable = false)
 	protected User user;
 	
 	@ManyToOne
-	@JoinColumn(foreignKey = @ForeignKey(name="id_"))
+	@JoinColumn(foreignKey = @ForeignKey(name="id_"), nullable = false)
 	protected Role role;
 
 	public User getUser() {

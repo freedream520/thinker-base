@@ -32,6 +32,11 @@ public class UserServiceImpl implements PageableService<User> {
 	}
 	
 	@Override
+	public List<User> findAll(Specification<User> entityQuery) {
+		return userRepository.findAll(entityQuery);
+	}
+	
+	@Override
 	public Page<User> findAll(Specification<User> entityQuery, Pageable pageable) {
 		return userRepository.findAll(entityQuery, pageable); 
 	}

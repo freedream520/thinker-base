@@ -54,5 +54,10 @@ public class RoleServiceImpl implements PageableService<Role> {
 	public void detete(Iterable<Role> entities) {
 		roleRepository.delete(entities);
 	}
+
+	@Override
+	public List<Role> findAll(Specification<Role> entityQuery) {
+		return roleRepository.findAll(entityQuery);
+	}
 	
 }

@@ -2,6 +2,8 @@ package com.github.slowrookie.service;
 
 import java.util.List;
 
+import org.springframework.data.jpa.domain.Specification;
+
 import com.github.slowrookie.persistence.IdentityPersistable;
 
 /**
@@ -52,5 +54,13 @@ public interface CrudService<T extends IdentityPersistable> {
 	 * @param entities
 	 */
 	public void detete(Iterable<T> entities);
+	
+	/**
+	 * 根据查询条件查询所有
+	 * 
+	 * @param entityQuery
+	 * @return
+	 */
+	public List<T> findAll(Specification<T> entityQuery);
 	
 }
