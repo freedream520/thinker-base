@@ -2,8 +2,6 @@ package com.github.slowrookie.web;
 
 import java.util.List;
 
-import javax.persistence.EntityNotFoundException;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -37,7 +35,6 @@ public class UserController {
 	@RequestMapping(value = "/user/{id}", method = RequestMethod.GET)
 	@ResponseBody User getUser(@PathVariable("id") Long id) {
 		User user = userService.findOne(id);
-		if(user == null) throw new EntityNotFoundException( "Unable to find " + User.class.getName()  + " with id " + id );
 		return user;
 	}
 	

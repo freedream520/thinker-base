@@ -1,20 +1,19 @@
-package com.github.slowrookie.test.user;
-
-import static org.junit.Assert.assertEquals;
+package com.github.slowrookie.web.test;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.Test;
-import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.client.HttpClientErrorException;
 
 import com.github.slowrookie.persistence.entity.User;
 import com.github.slowrookie.test.AbstractTest;
 
+/**
+ * 测试UserController
+ * 
+ * @author 刘佳兴
+ */
 public class UserControllerTest extends AbstractTest{
 
 	@Test
@@ -47,24 +46,12 @@ public class UserControllerTest extends AbstractTest{
 	public void saveUsers(){
 		String url = HOST + "users";
 		List<User> users = new ArrayList<>();
-		User user = new User("liujx", "刘","佳兴", "3", 1, "liujiaxingemail@gmail.com", "17092080066", "00000000");
-		User user1 = new User("liujx", "刘","佳兴", "3", 1, "liujiaxingemail@gmail.com", "17092080066", "00000000");
+		User user = new User("liujx1", "刘","佳兴", "3", 1, "liujiaxingemail@gmail.com", "17092080066", "00000000");
+		User user1 = new User("liujx2", "刘","佳兴", "3", 1, "liujiaxingemail@gmail.com", "17092080066", "00000000");
 		users.add(user);
 		users.add(user1);
 		doRequest(url, HttpMethod.POST, users);
 	}
 	
-	private void doRequest(String url, HttpMethod httpMethod, Object obj){
-		try {
-			ResponseEntity<String> response = rest.exchange(url, httpMethod, 
-					new HttpEntity<>(obj, httpHeaders), String.class);
-			
-			assertEquals(HttpStatus.OK, response.getStatusCode());
-			
-			System.out.println(response.getBody());
-		} catch (HttpClientErrorException e) {
-			System.out.println(e.getResponseBodyAsString());
-		}
-	}
 	
 }
