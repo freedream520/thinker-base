@@ -17,7 +17,7 @@ public interface UserRoleService extends CrudService<UserRole> {
 	 * 根据权限查组织
 	 * 
 	 * @param roleId
-	 * @return
+	 * @return List<User> {@link User}
 	 */
 	public List<User> findUserByRoleId(Long roleId);
 	
@@ -25,7 +25,7 @@ public interface UserRoleService extends CrudService<UserRole> {
 	 * 根据用户查权限
 	 * 
 	 * @param userId
-	 * @return
+	 * @return List<Role> {@link Role}
 	 */
 	public List<Role> findRoleByUser(Long userId);
 	

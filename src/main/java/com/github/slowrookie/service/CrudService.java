@@ -6,6 +6,7 @@ import com.github.slowrookie.persistence.IdentityPersistable;
 
 /**
  * 面向接口编程，规范基本的Crud接口
+ * 所有实体类通过接口规范需要实现的接口，每个实体都应至少提供CrudService的相关服务
  * 
  * @author 刘佳兴
  */
@@ -15,7 +16,7 @@ public interface CrudService<T extends IdentityPersistable> {
 	 * 根据id查找
 	 * 
 	 * @param id
-	 * @return
+	 * @return T
 	 */
 	public T findOne(Long id);
 	
@@ -24,7 +25,7 @@ public interface CrudService<T extends IdentityPersistable> {
 	 * 
 	 * @param AuditablePersistable
 	 * 		保存信息
-	 * @return User
+	 * @return T
 	 * 		返回保存后的用户信息
 	 */
 	public T save(T auditable);
@@ -33,7 +34,7 @@ public interface CrudService<T extends IdentityPersistable> {
 	 * 批量插入数据
 	 * 
 	 * @param entities
-	 * @return
+	 * @return List<T>
 	 */
 	public List<T> save(Iterable<T> entities);
 	

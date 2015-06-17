@@ -18,7 +18,8 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 
 /**
  * 统一错误处理（收集中...）
- * 在日志中打印错误信息，根据错误类型确定返回的具体提示信息
+ * 在日志中打印错误信息，以便于日志分析
+ * 根据错误类型确定返回的具体提示信息
  * 
  * @author 刘佳兴
  */
@@ -31,12 +32,13 @@ public class ExceptionHandlerAdvice {
 	 * 参数的错误处理
 	 * 
 	 * @param e
-	 * @return
+	 * 		PropertyReferenceException
+	 * @return {@link ErrorInformation}
 	 */
 	@ResponseStatus(HttpStatus.NOT_FOUND)
 	@ExceptionHandler(PropertyReferenceException.class)
 	@ResponseBody ErrorInformation handleNoPropery(PropertyReferenceException e){
-		logger.error("handleNoPropery", e.fillInStackTrace());
+		logger.error("handleNoPropery", e);
 		return new ErrorInformation(HttpStatus.NOT_FOUND.value(), e.getMessage());
 	}
 	
@@ -44,12 +46,13 @@ public class ExceptionHandlerAdvice {
 	 * hibernate字段校验信息
 	 * 
 	 * @param e
-	 * @return
+	 * 		ConstraintViolationException
+	 * @return {@link ErrorInformation}
 	 */
 	@ResponseStatus(HttpStatus.NOT_FOUND)
 	@ExceptionHandler(ConstraintViolationException.class)
 	@ResponseBody ErrorInformation handleHibernateValdation(ConstraintViolationException e){
-		logger.error("handleHibernateValdation", e.fillInStackTrace());
+		logger.error("handleHibernateValdation", e);
 		Set<ConstraintViolation<?>> constraintViolations = e.getConstraintViolations();
 		String message = "";
 		for (ConstraintViolation<?> constraintViolation : constraintViolations) {
@@ -62,12 +65,13 @@ public class ExceptionHandlerAdvice {
 	 * 唯一主键
 	 * 
 	 * @param e
-	 * @return
+	 * 		DataIntegrityViolationException
+	 * @return {@link ErrorInformation}
 	 */
 	@ResponseStatus(HttpStatus.NOT_FOUND)
 	@ExceptionHandler(DataIntegrityViolationException.class)
 	@ResponseBody ErrorInformation handleDataIntegrityViolation(DataIntegrityViolationException e){
-		logger.error("handleDataIntegrityViolation", e.fillInStackTrace());
+		logger.error("handleDataIntegrityViolation", e);
 		return new ErrorInformation(HttpStatus.NOT_FOUND.value(), e.getMessage());
 	}
 	
@@ -75,12 +79,13 @@ public class ExceptionHandlerAdvice {
 	 * 返回值为空
 	 * 
 	 * @param e
-	 * @return
+	 * 		EntityNotFoundException
+	 * @return {@link ErrorInformation}
 	 */
 	@ResponseStatus(HttpStatus.NOT_FOUND)
 	@ExceptionHandler(EntityNotFoundException.class)
 	@ResponseBody ErrorInformation handleEntityNotFound(EntityNotFoundException e){
-		logger.error("handleEntityNotFound", e.fillInStackTrace());
+		logger.error("handleEntityNotFound", e);
 		return new ErrorInformation(HttpStatus.NOT_FOUND.value(), e.getMessage());
 	}
 	
