@@ -23,12 +23,12 @@ public class UserRoleServiceImpl implements UserRoleService {
 	
 	@Override
 	public List<User> findUserByRoleId(Long roleId){
-		return userRoleRepository.findByRoleId(roleId);
+		return userRoleRepository.findUserByRoleId(roleId);
 	}
 	
 	@Override
 	public List<Role> findRoleByUser(Long userId){
-		return userRoleRepository.findByUserId(userId);
+		return userRoleRepository.findRoleByUserId(userId);
 	}
 	
 	@Override

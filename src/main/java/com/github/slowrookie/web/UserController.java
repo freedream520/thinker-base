@@ -33,7 +33,7 @@ public class UserController {
 	 * @return
 	 */
 	@RequestMapping(value = "/user/{id}", method = RequestMethod.GET)
-	@ResponseBody User getUser(@PathVariable("id") Long id) {
+	@ResponseBody User findOne(@PathVariable("id") Long id) {
 		User user = userService.findOne(id);
 		return user;
 	}
@@ -44,7 +44,7 @@ public class UserController {
 	 * @param id
 	 */
 	@RequestMapping(value = "/user/{id}", method = RequestMethod.DELETE)
-	void remove(@PathVariable("id") Long id){
+	void delete(@PathVariable("id") Long id){
 		userService.delete(id);
 	}
 	
@@ -57,7 +57,7 @@ public class UserController {
 	 * 		返回更新完成后的User
 	 */
 	@RequestMapping(value = "/users", method = RequestMethod.PUT, produces = "application/json")
-	@ResponseBody User persist(@RequestBody User user){
+	@ResponseBody User save(@RequestBody User user){
 		return userService.save(user);
 	}
 	
@@ -68,7 +68,7 @@ public class UserController {
 	 * @return
 	 */
 	@RequestMapping(value = "/users", method = RequestMethod.POST, produces = "application/json")
-	@ResponseBody List<User> persistAll(@RequestBody List<User> users){
+	@ResponseBody List<User> saveAll(@RequestBody List<User> users){
 		return userService.save(users);
 	}
 	

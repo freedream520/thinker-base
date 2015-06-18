@@ -31,10 +31,10 @@ public class RoleController {
 	 * 根据主键id查询
 	 * 
 	 * @param id
-	 * @return
+	 * @return {@link Role}
 	 */
 	@RequestMapping(value = "/role/{id}", method = RequestMethod.GET)
-	@ResponseBody Role getUser(@PathVariable("id") Long id) {
+	@ResponseBody Role findOne(@PathVariable("id") Long id) {
 		return roleService.findOne(id);
 	}
 	
@@ -44,7 +44,7 @@ public class RoleController {
 	 * @param id
 	 */
 	@RequestMapping(value = "/role/{id}", method = RequestMethod.DELETE)
-	@ResponseBody void remove(@PathVariable("id") Long id){
+	@ResponseBody void delete(@PathVariable("id") Long id){
 		roleService.delete(id);
 	}
 	
@@ -54,10 +54,10 @@ public class RoleController {
 	 * @param role
 	 * 		序列化的User对象
 	 * @return User
-	 * 		返回更新完成后的User
+	 * 		返回更新完成后的role {@link Role}
 	 */
 	@RequestMapping(value = "/roles", method = RequestMethod.PUT, produces = "application/json")
-	@ResponseBody Role persist(@RequestBody Role role){
+	@ResponseBody Role save(@RequestBody Role role){
 		return roleService.save(role);
 	}
 	
@@ -65,10 +65,10 @@ public class RoleController {
 	 * 批量插入
 	 * 
 	 * @param roles
-	 * @return
+	 * @return List<Role> {@link Role}
 	 */
 	@RequestMapping(value = "/roles", method = RequestMethod.POST, produces = "application/json")
-	@ResponseBody List<Role> persistAll(@RequestBody List<Role> roles){
+	@ResponseBody List<Role> saveAll(@RequestBody List<Role> roles){
 		return roleService.save(roles);
 	}
 
@@ -79,7 +79,7 @@ public class RoleController {
 	 * 		用户查询对象，通过JSON传递
 	 * @param pageParamater
 	 * 		分页查询条件对象
-	 * @return Page<Role>
+	 * @return Page<Role> {@link Role}
 	 * 		返回分页数据
 	 */
 	@RequestMapping(value = "/roles", method = RequestMethod.GET, produces = "application/json")

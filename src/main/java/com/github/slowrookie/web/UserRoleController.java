@@ -28,7 +28,7 @@ public class UserRoleController {
 	 * @return
 	 */
 	@RequestMapping(value = "/userRole/{id}", method = RequestMethod.GET)
-	@ResponseBody UserRole getEntity(@PathVariable("id") Long id) {
+	@ResponseBody UserRole findOne(@PathVariable("id") Long id) {
 		return userRoleService.findOne(id);
 	}
 	
@@ -38,7 +38,7 @@ public class UserRoleController {
 	 * @param id
 	 */
 	@RequestMapping(value = "/userRole/{id}", method = RequestMethod.DELETE)
-	void remove(@PathVariable("id") Long id){
+	void delete(@PathVariable("id") Long id){
 		userRoleService.delete(id);
 	}
 	
@@ -51,7 +51,7 @@ public class UserRoleController {
 	 * 		返回更新完成后的User
 	 */
 	@RequestMapping(value = "/userRoles", method = RequestMethod.PUT, produces = "application/json")
-	@ResponseBody Long persist(@RequestBody UserRole userRole){
+	@ResponseBody Long save(@RequestBody UserRole userRole){
 		return userRoleService.save(userRole).getId();
 	}
 	
@@ -62,7 +62,7 @@ public class UserRoleController {
 	 * @return
 	 */
 	@RequestMapping(value = "/userRoles", method = RequestMethod.POST, produces = "application/json")
-	@ResponseBody List<UserRole> persistAll(@RequestBody List<UserRole> userRoles){
+	@ResponseBody List<UserRole> saveAll(@RequestBody List<UserRole> userRoles){
 		return userRoleService.save(userRoles);
 	}
 	
