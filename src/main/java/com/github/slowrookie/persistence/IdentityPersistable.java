@@ -9,7 +9,7 @@ import javax.persistence.MappedSuperclass;
 import org.springframework.data.domain.Persistable;
 
 /**
- * 持久化唯一主键的父类映射
+ * 持久化唯一主键映射
  * 
  * @author 刘佳兴
  */
