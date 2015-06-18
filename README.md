@@ -27,4 +27,4 @@
 >*	类名和方法名应该充分体现功能，要有主次之分和联系。（例如：User里的 唯一主键，应该就是Id不应该是UserId，数据库名称规范也如此）
 
 ###主要结构图
-![主要结构图](https://raw.githubusercontent.com/SlowRookie/thinker-base/8612edf9d096db9e60f0d2f63432fa9895b76f6b/src/test/resouces/datamodel/base.png)
+![主要结构图](https://raw.githubusercontent.com/SlowRookie/thinker-base/master/src/test/resouces/datamodel/base.png)
