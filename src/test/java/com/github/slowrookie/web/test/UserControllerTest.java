@@ -18,7 +18,7 @@ public class UserControllerTest extends AbstractTest{
 
 	@Test
 	public void getUsers() throws Exception {
-		String url = HOST + "users?page=0&size=10&sort=createdBy0";
+		String url = HOST + "users?page=0&size=10&sort=createdBy";
 		url += "&loginName=liujx";
 		doRequest(url, HttpMethod.GET, null);
 	}

@@ -64,7 +64,7 @@ public class RoleController {
 	/**
 	 * 批量插入
 	 * 
-	 * @param roles
+	 * @param roles List<Role>
 	 * @return List<Role> {@link Role}
 	 */
 	@RequestMapping(value = "/roles", method = RequestMethod.POST, produces = "application/json")
