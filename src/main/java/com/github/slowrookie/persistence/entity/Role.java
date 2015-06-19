@@ -25,14 +25,18 @@ public class Role extends AuditablePersistable {
 	@Size(max = 20)
 	@Column(length = 20, unique = true)
 	protected String name;
+	
+	@NotEmpty
+	protected Integer type;
 
 	public Role() {
 		super();
 	}
 
-	public Role(String name) {
+	public Role(String name, Integer type) {
 		super();
 		this.name = name;
+		this.type = type;
 	}
 
 	public String getName() {
@@ -41,6 +45,14 @@ public class Role extends AuditablePersistable {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+	
+	public Integer getType() {
+		return type;
+	}
+
+	public void setType(Integer type) {
+		this.type = type;
 	}
 
 	@Override
