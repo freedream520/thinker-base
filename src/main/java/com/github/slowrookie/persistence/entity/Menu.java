@@ -37,7 +37,7 @@ public class Menu extends AuditablePersistable {
 	@OneToMany(mappedBy = "parent")
 	private Set<Menu> children = new HashSet<Menu>();
 
-	public String getName() {
+	public String getName() { 
 		return name;
 	}
 
