@@ -57,7 +57,7 @@ public class MenuControllerTest extends AbstractTest{
 		Map<String, Object> menu1 = new HashMap<>();
 		menu1.put("name", "二级菜单");
 		menu1.put("resource", "");
-		menu1.put("parent", parent);
+		menu1.put("parent", parent); 
 		
 		menus.add(menu1);
 		
