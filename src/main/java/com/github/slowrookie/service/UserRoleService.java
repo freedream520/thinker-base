@@ -11,7 +11,7 @@ import com.github.slowrookie.persistence.entity.UserRole;
  * 
  * @author 刘佳兴
  */
-public interface UserRoleService extends CrudService<UserRole> {
+public interface UserRoleService extends DefaultCrudService<UserRole> {
 
 	/**
 	 * 根据权限查组织

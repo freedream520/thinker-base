@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.github.slowrookie.persistence.entity.Menu;
 import com.github.slowrookie.persistence.entity.query.MenuQuery;
-import com.github.slowrookie.service.PageableService;
+import com.github.slowrookie.service.DefaultCrudService;
 
 /**
  * 组织管理
@@ -24,7 +24,7 @@ import com.github.slowrookie.service.PageableService;
 public class MenuController {
 
 	@Autowired
-	private PageableService<Menu> menuService;
+	private DefaultCrudService<Menu> menuService;
 	
 	/**
 	 * 根据主键id查询

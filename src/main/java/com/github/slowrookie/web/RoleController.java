@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.github.slowrookie.persistence.entity.Role;
 import com.github.slowrookie.persistence.entity.query.RoleQuery;
-import com.github.slowrookie.service.PageableService;
+import com.github.slowrookie.service.DefaultCrudService;
 
 /**
  * 权限管理
@@ -25,7 +25,7 @@ import com.github.slowrookie.service.PageableService;
 public class RoleController {
 	
 	@Autowired
-	private PageableService<Role> roleService;
+	private DefaultCrudService<Role> roleService;
 
 	/**
 	 * 根据主键id查询

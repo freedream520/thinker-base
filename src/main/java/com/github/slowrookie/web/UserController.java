@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.github.slowrookie.persistence.entity.User;
 import com.github.slowrookie.persistence.entity.query.UserQuery;
-import com.github.slowrookie.service.PageableService;
+import com.github.slowrookie.service.DefaultCrudService;
 
 /**
  * 用户管理
@@ -24,7 +24,7 @@ import com.github.slowrookie.service.PageableService;
 public class UserController {
 
 	@Autowired
-	private PageableService<User> userService;
+	private DefaultCrudService<User> userService;
 
 	/**
 	 * 根据主键id查询
@@ -34,8 +34,7 @@ public class UserController {
 	 */
 	@RequestMapping(value = "/user/{id}", method = RequestMethod.GET)
 	@ResponseBody User findOne(@PathVariable("id") Long id) {
-		User user = userService.findOne(id);
-		return user;
+		return userService.findOne(id);
 	}
 	
 	/**

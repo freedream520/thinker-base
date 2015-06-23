@@ -11,7 +11,7 @@ import com.github.slowrookie.persistence.entity.RoleMenu;
  * 
  * @author 刘佳兴
  */
-public interface RoleMenuService extends CrudService<RoleMenu> {
+public interface RoleMenuService extends DefaultCrudService<RoleMenu> {
 
 	/**
 	 * 根据菜单查权限

@@ -1,7 +1,5 @@
 package com.github.slowrookie.repository;
 
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.stereotype.Repository;
 
 import com.github.slowrookie.persistence.entity.Menu;
@@ -12,6 +10,6 @@ import com.github.slowrookie.persistence.entity.Menu;
  * @author 刘佳兴
  */
 @Repository
-public interface MenuRepository extends JpaRepository<Menu, Long>, JpaSpecificationExecutor<Menu>  {
+public interface MenuRepository extends DefaultRepository<Menu>  {
 
 }
