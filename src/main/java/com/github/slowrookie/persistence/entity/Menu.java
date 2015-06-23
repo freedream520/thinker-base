@@ -6,7 +6,6 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
@@ -29,13 +28,17 @@ public class Menu extends AuditablePersistable {
 	protected String name;
 	
 	@NotNull
-	protected String resouce = "";
+	protected String resource = "";
 
-	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-	protected Menu parent;
+	protected Long parent;
 	
-	@OneToMany(mappedBy = "parent")
+	@OneToMany(mappedBy = "parent", cascade = CascadeType.ALL)
 	private Set<Menu> children = new HashSet<Menu>();
+	
+	public boolean isChild() {
+		if(children.isEmpty() && parent != null ) return true;
+		return false;
+	}
 
 	public String getName() { 
 		return name;
@@ -45,19 +48,19 @@ public class Menu extends AuditablePersistable {
 		this.name = name; 
 	}
 
-	public String getResouce() {
-		return resouce;
+	public String getResource() {
+		return resource;
 	}
 
-	public void setResouce(String resouce) {
-		this.resouce = resouce;
+	public void setResource(String resource) {
+		this.resource = resource;
 	}
 
-	public Menu getParent() {
+	public Long getParent() {
 		return parent;
 	}
 
-	public void setParent(Menu parent) {
+	public void setParent(Long parent) {
 		this.parent = parent;
 	}
 

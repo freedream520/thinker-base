@@ -25,7 +25,7 @@ public class UserController {
 
 	@Autowired
 	private PageableService<User> userService;
-	
+
 	/**
 	 * 根据主键id查询
 	 * 

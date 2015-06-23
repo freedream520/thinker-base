@@ -1,15 +1,18 @@
 package com.github.slowrookie.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.transaction.Transactional;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
+import com.github.slowrookie.persistence.AuditablePersistable;
 import com.github.slowrookie.persistence.entity.Menu;
 import com.github.slowrookie.repository.MenuRepository;
 import com.github.slowrookie.service.PageableService;
@@ -43,20 +46,24 @@ public class MenuServiceImpl implements PageableService<Menu> {
 
 	@Override
 	public Menu save(Menu entity) {
-		if(null != entity.getParent()){
-			entity.setParent(this.findOne(entity.getParent().getId()));
+		Menu persistEntity = entity;
+		if(!entity.isNew()){
+			persistEntity = menuRepository.findOne(entity.getId());
+			BeanUtils.copyProperties(entity, persistEntity, AuditablePersistable.ignoreProperties);
 		}
-		return menuRepository.save(entity);
+		return menuRepository.save(persistEntity);
 	}
 	
 	@Override
 	public List<Menu> save(Iterable<Menu> entities){
+		List<Menu> result = new ArrayList<Menu>();
+		
 		for (Menu menu : entities) {
-			if(null != menu.getParent()){
-				menu.setParent(this.findOne(menu.getParent().getId()));
-			}
+			result.add(menu);
+			this.save(menu);
 		}
-		return menuRepository.save(entities);
+		
+		return result;
 	}
 	
 	@Override
