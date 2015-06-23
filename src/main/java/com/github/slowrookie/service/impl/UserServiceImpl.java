@@ -1,15 +1,18 @@
 package com.github.slowrookie.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.transaction.Transactional;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
+import com.github.slowrookie.persistence.AuditablePersistable;
 import com.github.slowrookie.persistence.entity.User;
 import com.github.slowrookie.repository.UserRepository;
 import com.github.slowrookie.service.PageableService;
@@ -42,13 +45,25 @@ public class UserServiceImpl implements PageableService<User> {
 	}
 
 	@Override
-	public User save(User user) {
-		return userRepository.save(user);
+	public User save(User entity) {
+		User persistEntity = entity;
+		if(!entity.isNew()){
+			persistEntity = userRepository.findOne(entity.getId());
+			BeanUtils.copyProperties(entity, persistEntity, AuditablePersistable.ignoreProperties);
+		}
+		return userRepository.save(entity);
 	}
 	
 	@Override
 	public List<User> save(Iterable<User> entities){
-		return userRepository.save(entities);
+		List<User> result = new ArrayList<User>();
+		
+		for (User user : entities) {
+			result.add(user);
+			this.save(user);
+		}
+		
+		return result;
 	}
 	
 	@Override

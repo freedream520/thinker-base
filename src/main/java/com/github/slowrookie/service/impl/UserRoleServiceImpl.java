@@ -1,9 +1,11 @@
 package com.github.slowrookie.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.transaction.Transactional;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
@@ -32,8 +34,13 @@ public class UserRoleServiceImpl implements UserRoleService {
 	}
 	
 	@Override
-	public UserRole save(UserRole userRole){
-		return userRoleRepository.save(userRole);
+	public UserRole save(UserRole entity){
+		UserRole persistEntity = entity;
+		if(!entity.isNew()){
+			persistEntity = userRoleRepository.findOne(entity.getId());
+			BeanUtils.copyProperties(entity, persistEntity);
+		}
+		return userRoleRepository.save(entity);
 	}
 
 	@Override
@@ -43,7 +50,16 @@ public class UserRoleServiceImpl implements UserRoleService {
 
 	@Override
 	public List<UserRole> save(Iterable<UserRole> entities) {
-		return userRoleRepository.save(entities);
+		
+		List<UserRole> result = new ArrayList<UserRole>();
+		
+		for (UserRole userRole : entities) {
+			result.add(userRole);
+			this.save(userRole);
+		}
+		
+		return result;
+		
 	}
 
 	@Override
