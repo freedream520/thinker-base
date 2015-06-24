@@ -28,7 +28,6 @@ public class MenuControllerTest extends AbstractTest{
 		String url = HOST + "menus";
 		
 		Map<String, Object> menu = new HashMap<>();
-		menu.put("id", "1");
 		menu.put("name", "一级菜单");
 		menu.put("resource", "/menus0");
 		menu.put("parent", null);
@@ -54,10 +53,16 @@ public class MenuControllerTest extends AbstractTest{
 		
 		Map<String, Object> menu1 = new HashMap<>();
 		menu1.put("name", "二级菜单");
-		menu1.put("resource", "");
-		menu1.put("parent", 1); 
+		menu1.put("resource", "/menus/1/1");
+		menu1.put("parent", 1);
+		
+		Map<String, Object> menu2 = new HashMap<>();
+		menu2.put("name", "二级菜单01");
+		menu2.put("resource", "/menus/1/2");
+		menu2.put("parent", 1); 
 		
 		menus.add(menu1);
+		menus.add(menu2);
 		
 		doRequest(url, HttpMethod.POST, menus);
 	}

@@ -7,6 +7,7 @@ import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
+import com.github.slowrookie.constant.RoleType;
 import com.github.slowrookie.persistence.AuditablePersistable;
 
 /**
@@ -26,8 +27,9 @@ public class Role extends AuditablePersistable {
 	@Column(length = 20, unique = true)
 	protected String name;
 	
+	//默认均为菜单权限
 	@NotEmpty
-	protected Integer type;
+	protected Integer type = RoleType.MENU.value();
 
 	public Role() {
 		super();

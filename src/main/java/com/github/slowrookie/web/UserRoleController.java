@@ -47,12 +47,12 @@ public class UserRoleController {
 	 * 
 	 * @param userRole
 	 * 		序列化的User对象
-	 * @return User
-	 * 		返回更新完成后的User
+	 * @return UserRole
+	 * 		返回更新完成后的UserRole
 	 */
 	@RequestMapping(value = "/userRoles", method = RequestMethod.PUT, produces = "application/json")
-	@ResponseBody Long save(@RequestBody UserRole userRole){
-		return userRoleService.save(userRole).getId();
+	@ResponseBody UserRole save(@RequestBody UserRole userRole){
+		return userRoleService.save(userRole);
 	}
 	
 	/**
@@ -84,20 +84,20 @@ public class UserRoleController {
 	 * 		角色ID
 	 * @return List<User>
 	 */
-	@RequestMapping(value = "/userRoles/users/{roleId}", method = RequestMethod.GET)
+	@RequestMapping(value = "/userRoles/role/{roleId}", method = RequestMethod.GET)
 	@ResponseBody List<User> findUserByRoleId(@PathVariable Long roleId){
 		List<User> users = userRoleService.findUserByRoleId(roleId);
 		return users; 
 	}
 	
 	/**
-	 * 根据roleId查询User
+	 * 根据userId查询Role
 	 * 
 	 * @param userId
 	 * 		用户ID
 	 * @return List<Role>
 	 */
-	@RequestMapping(value = "/userRoles/roles/{userId}", method = RequestMethod.GET)
+	@RequestMapping(value = "/userRoles/user/{userId}", method = RequestMethod.GET)
 	@ResponseBody List<Role> findRoleByUserId(@PathVariable Long userId){
 		return userRoleService.findRoleByUser(userId);
 	}

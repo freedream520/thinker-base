@@ -6,6 +6,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.github.slowrookie.persistence.IdentityPersistable;
 
 /**
@@ -23,6 +24,8 @@ public class RoleMenu extends IdentityPersistable {
 	@JoinColumn(foreignKey = @ForeignKey(name="id_"), nullable = false)
 	protected Role role;
 	
+	//不需要返回关联对象的children属性
+	@JsonIgnoreProperties(value = "children")
 	@ManyToOne
 	@JoinColumn(foreignKey = @ForeignKey(name="id_"), nullable = false)
 	protected Menu menu;
