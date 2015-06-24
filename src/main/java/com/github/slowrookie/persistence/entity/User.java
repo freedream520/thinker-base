@@ -18,6 +18,12 @@ public class User extends AuditablePersistable {
 
 	private static final long serialVersionUID = 1L;
 
+	@NotNull
+	protected Long organization;
+	
+	@NotNull
+	protected Long department;
+	
 	@Column(unique = true ,length = 20)
 	protected String loginName;
 	
@@ -58,6 +64,22 @@ public class User extends AuditablePersistable {
 		this.email = email;
 		this.mobile = mobile;
 		this.telephone = telephone;
+	}
+	
+	public Long getOrganization() {
+		return organization;
+	}
+
+	public void setOrganization(Long organization) {
+		this.organization = organization;
+	}
+
+	public Long getDepartment() {
+		return department;
+	}
+
+	public void setDepartment(Long department) {
+		this.department = department;
 	}
 
 	public String getLoginName() {

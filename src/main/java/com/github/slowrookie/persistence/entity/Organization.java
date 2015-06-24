@@ -13,13 +13,13 @@ import javax.validation.constraints.NotNull;
 import com.github.slowrookie.persistence.AuditablePersistable;
 
 /**
- * 菜单实体类映射
+ * 组织实体类映射
  * 
  * @author 刘佳兴
  */
 @Entity
-@Table(name = "base_menu")
-public class Menu extends AuditablePersistable {
+@Table(name = "base_organization")
+public class Organization extends AuditablePersistable {
 
 	private static final long serialVersionUID = 1L;
 
@@ -28,12 +28,12 @@ public class Menu extends AuditablePersistable {
 	protected String name;
 	
 	@NotNull
-	protected String resource = "";
+	protected String code = "";
 
 	protected Long parent;
 	
 	@OneToMany(mappedBy = "parent", cascade = CascadeType.ALL)
-	private Set<Menu> children = new HashSet<Menu>();
+	private Set<Organization> children = new HashSet<Organization>();
 	
 	public boolean isChild() {
 		if(children.isEmpty() && parent != null ) return true;
@@ -48,12 +48,12 @@ public class Menu extends AuditablePersistable {
 		this.name = name; 
 	}
 
-	public String getResource() {
-		return resource;
+	public String getCode() {
+		return code;
 	}
 
-	public void setResource(String resource) {
-		this.resource = resource;
+	public void setCode(String code) {
+		this.code = code;
 	}
 
 	public Long getParent() {
@@ -64,11 +64,11 @@ public class Menu extends AuditablePersistable {
 		this.parent = parent;
 	}
 
-	public Set<Menu> getChildren() {
+	public Set<Organization> getChildren() {
 		return children;
 	}
 
-	public void setChildren(Set<Menu> children) {
+	public void setChildren(Set<Organization> children) {
 		this.children = children;
 	}
 
@@ -88,7 +88,7 @@ public class Menu extends AuditablePersistable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Menu other = (Menu) obj;
+		Organization other = (Organization) obj;
 		if (name == null) {
 			if (other.name != null)
 				return false;
