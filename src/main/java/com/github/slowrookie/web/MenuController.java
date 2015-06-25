@@ -16,7 +16,7 @@ import com.github.slowrookie.persistence.entity.query.MenuQuery;
 import com.github.slowrookie.service.DefaultCrudService;
 
 /**
- * 组织管理
+ * 菜单管理
  * 
  * @author 刘佳兴
  */
@@ -39,7 +39,7 @@ public class MenuController {
 	}
 	
 	/**
-	 * 更具id删除菜单信息
+	 * 根据id删除菜单信息
 	 * 
 	 * @param id
 	 */
@@ -83,7 +83,7 @@ public class MenuController {
 	 * 		返回分页数据
 	 */
 	@RequestMapping(value = "/menus", method = RequestMethod.GET, produces = "application/json")
-	@ResponseBody Page<Menu> findAll(PageParamater pageParamater, MenuQuery menuQuery) {
+	@ResponseBody Page<Menu> findAll(MenuQuery menuQuery, PageParamater pageParamater) {
 		return menuService.findAll(menuQuery, pageParamater.getPageRequest());
 	}
 	

@@ -83,7 +83,7 @@ public class RoleController {
 	 * 		返回分页数据
 	 */
 	@RequestMapping(value = "/roles", method = RequestMethod.GET, produces = "application/json")
-	@ResponseBody public Page<Role> findAll(PageParamater pageParamater, RoleQuery roleQuery) {
+	@ResponseBody public Page<Role> findAll(RoleQuery roleQuery, PageParamater pageParamater) {
 		return roleService.findAll(roleQuery, pageParamater.getPageRequest());
 	}
 

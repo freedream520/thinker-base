@@ -82,7 +82,7 @@ public class UserController {
 	 * 		返回分页数据
 	 */
 	@RequestMapping(value = "/users", method = RequestMethod.GET, produces = "application/json")
-	@ResponseBody Page<User> findAll(PageParamater pageParamater, UserQuery userQuery) {
+	@ResponseBody Page<User> findAll(UserQuery userQuery, PageParamater pageParamater) {
 		return userService.findAll(userQuery, pageParamater.getPageRequest());
 	}
 	
