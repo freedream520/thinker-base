@@ -7,7 +7,7 @@ import com.github.slowrookie.persistence.entity.Role;
 import com.github.slowrookie.persistence.entity.RoleMenu;
 
 /**
- * 角色菜单扩展方法
+ * 角色菜单接口扩展
  * 
  * @author 刘佳兴
  */

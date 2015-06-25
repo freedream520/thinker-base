@@ -53,7 +53,7 @@ public class RoleController {
 	 * 
 	 * @param role
 	 * 		序列化的User对象
-	 * @return User
+	 * @return Role
 	 * 		返回更新完成后的role {@link Role}
 	 */
 	@RequestMapping(value = "/roles", method = RequestMethod.PUT, produces = "application/json")

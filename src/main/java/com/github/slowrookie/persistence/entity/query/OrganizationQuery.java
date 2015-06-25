@@ -11,19 +11,19 @@ import javax.persistence.criteria.Root;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.util.StringUtils;
 
-import com.github.slowrookie.persistence.entity.Menu;
+import com.github.slowrookie.persistence.entity.Organization;
 
 /**
- * 菜单查询条件拼写
+ * 组织查询条件拼写
  * 
  * @author 刘佳兴
  */
-public class MenuQuery extends Menu implements Specification<Menu> {
+public class OrganizationQuery extends Organization implements Specification<Organization> {
 	
 	private static final long serialVersionUID = -7805576044463820714L;
 
 	@Override
-	public Predicate toPredicate(Root<Menu> root, CriteriaQuery<?> query,
+	public Predicate toPredicate(Root<Organization> root, CriteriaQuery<?> query,
 			CriteriaBuilder cb) {
 		List<Predicate> predicates = new ArrayList<Predicate>();
 		
@@ -37,6 +37,10 @@ public class MenuQuery extends Menu implements Specification<Menu> {
 		
 		if(null != this.activity) {
 			predicates.add(cb.equal(root.get("activity"), this.activity));
+		}
+		
+		if(!StringUtils.isEmpty(this.code)){
+			predicates.add(cb.like(root.get("code").as(String.class), "%" + this.code + "%"));
 		}
 		
 		Predicate[] pre = new Predicate[predicates.size()];

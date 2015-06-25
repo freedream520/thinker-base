@@ -15,6 +15,11 @@ import com.github.slowrookie.persistence.entity.User;
 import com.github.slowrookie.persistence.entity.UserRole;
 import com.github.slowrookie.service.UserRoleService;
 
+/**
+ * 用户权限管理
+ * 
+ * @author 刘佳兴
+ */
 @RestController
 public class UserRoleController {
 	

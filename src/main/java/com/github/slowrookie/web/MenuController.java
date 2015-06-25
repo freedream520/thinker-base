@@ -73,7 +73,7 @@ public class MenuController {
 	}
 	
 	/**
-	 * 查询获取users支持全属性条件查询
+	 * 查询获取menus支持全属性条件查询
 	 * 
 	 * @param menuQuery
 	 * 		菜单查询对象，通过JSON传递

@@ -10,7 +10,7 @@ import com.github.slowrookie.persistence.entity.Role;
 import com.github.slowrookie.repository.DefaultRepository;
 
 /**
- * 权限Service操作
+ * 权限服务
  * 
  * @author 刘佳兴
  */

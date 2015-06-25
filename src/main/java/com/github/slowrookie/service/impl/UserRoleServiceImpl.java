@@ -15,6 +15,11 @@ import com.github.slowrookie.repository.DefaultRepository;
 import com.github.slowrookie.repository.UserRoleRepository;
 import com.github.slowrookie.service.UserRoleService;
 
+/**
+ * 用户权限服务
+ * 
+ * @author 刘佳兴
+ */
 @Service("userRoleService")
 @Transactional
 public class UserRoleServiceImpl extends DefaultCrudServiceImpl<UserRole> implements UserRoleService {

@@ -7,7 +7,7 @@ import com.github.slowrookie.persistence.entity.User;
 import com.github.slowrookie.persistence.entity.UserRole;
 
 /**
- * 用户角色方法扩展 
+ * 用户角色接口扩展 
  * 
  * @author 刘佳兴
  */

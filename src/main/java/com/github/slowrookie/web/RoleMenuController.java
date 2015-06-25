@@ -15,6 +15,11 @@ import com.github.slowrookie.persistence.entity.Role;
 import com.github.slowrookie.persistence.entity.RoleMenu;
 import com.github.slowrookie.service.RoleMenuService;
 
+/**
+ * 角色菜单管理
+ * 
+ * @author 刘佳兴
+ */
 @RestController
 public class RoleMenuController {
 	

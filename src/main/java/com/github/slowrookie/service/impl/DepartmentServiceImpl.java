@@ -6,23 +6,23 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
-import com.github.slowrookie.persistence.entity.Menu;
+import com.github.slowrookie.persistence.entity.Department;
 import com.github.slowrookie.repository.DefaultRepository;
 
 /**
- * 菜单资源服务
+ * 部门服务
  * 
  * @author 刘佳兴
  */
-@Service("menuService")
+@Service("departmentService")
 @Transactional
-public class MenuServiceImpl extends DefaultCrudServiceImpl<Menu> {
+public class DepartmentServiceImpl extends DefaultCrudServiceImpl<Department> {
 	
 	@Override
 	@Autowired
-	@Qualifier(value = "menuRepository")
-	public void setDefaultRepository(DefaultRepository<Menu> menuRepository) {
-		this.defaultRepository = menuRepository;
+	@Qualifier(value = "departmentRepository")
+	public void setDefaultRepository(DefaultRepository<Department> departmentRepository) {
+		this.defaultRepository = departmentRepository;
 	}
 
 	

@@ -8,7 +8,11 @@ import com.github.slowrookie.persistence.entity.Role;
 import com.github.slowrookie.persistence.entity.User;
 import com.github.slowrookie.persistence.entity.UserRole;
 
-
+/**
+ * 用户权限持久化接口
+ * 
+ * @author 刘佳兴
+ */
 public interface UserRoleRepository extends DefaultRepository<UserRole> {
 
 	@Query("select u.user from UserRole u where u.role.id = ?1")

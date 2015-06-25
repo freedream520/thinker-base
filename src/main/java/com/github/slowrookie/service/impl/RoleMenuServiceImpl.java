@@ -15,6 +15,11 @@ import com.github.slowrookie.repository.DefaultRepository;
 import com.github.slowrookie.repository.RoleMenuRepository;
 import com.github.slowrookie.service.RoleMenuService;
 
+/**
+ * 角色菜单服务
+ * 
+ * @author 刘佳兴
+ */
 @Service("RoleMenuService")
 @Transactional
 public class RoleMenuServiceImpl extends DefaultCrudServiceImpl<RoleMenu> implements RoleMenuService {
