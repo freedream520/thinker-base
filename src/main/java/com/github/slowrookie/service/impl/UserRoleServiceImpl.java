@@ -5,7 +5,6 @@ import java.util.List;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import com.github.slowrookie.persistence.entity.Role;
@@ -24,6 +23,11 @@ import com.github.slowrookie.service.UserRoleService;
 @Transactional
 public class UserRoleServiceImpl extends DefaultCrudServiceImpl<UserRole> implements UserRoleService {
 	
+	@Autowired
+	public UserRoleServiceImpl(DefaultRepository<UserRole> userRoleRepository) {
+		super(userRoleRepository);
+	}
+
 	@Override
 	public List<User> findUserByRoleId(Long roleId){
 		return ((UserRoleRepository)defaultRepository).findUserByRoleId(roleId);
@@ -33,13 +37,5 @@ public class UserRoleServiceImpl extends DefaultCrudServiceImpl<UserRole> implem
 	public List<Role> findRoleByUser(Long userId){
 		return ((UserRoleRepository)defaultRepository).findRoleByUserId(userId);
 	}
-	
-	@Override
-	@Autowired
-	@Qualifier(value = "userRoleRepository")
-	public void setDefaultRepository(DefaultRepository<UserRole> userRoleRepository) {
-		this.defaultRepository = userRoleRepository;
-	}
-
 	
 }

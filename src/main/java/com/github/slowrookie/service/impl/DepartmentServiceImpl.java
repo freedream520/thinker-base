@@ -3,7 +3,6 @@ package com.github.slowrookie.service.impl;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import com.github.slowrookie.persistence.entity.Department;
@@ -18,11 +17,9 @@ import com.github.slowrookie.repository.DefaultRepository;
 @Transactional
 public class DepartmentServiceImpl extends DefaultCrudServiceImpl<Department> {
 	
-	@Override
 	@Autowired
-	@Qualifier(value = "departmentRepository")
-	public void setDefaultRepository(DefaultRepository<Department> departmentRepository) {
-		this.defaultRepository = departmentRepository;
+	public DepartmentServiceImpl(DefaultRepository<Department> departmentRepository) {
+		super(departmentRepository);
 	}
 
 	

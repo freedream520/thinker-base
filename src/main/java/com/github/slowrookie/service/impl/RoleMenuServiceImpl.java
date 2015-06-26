@@ -5,7 +5,6 @@ import java.util.List;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import com.github.slowrookie.persistence.entity.Menu;
@@ -24,6 +23,11 @@ import com.github.slowrookie.service.RoleMenuService;
 @Transactional
 public class RoleMenuServiceImpl extends DefaultCrudServiceImpl<RoleMenu> implements RoleMenuService {
 	
+	@Autowired
+	public RoleMenuServiceImpl(DefaultRepository<RoleMenu> roleMenuRepository) {
+		super(roleMenuRepository);
+	}
+
 	@Override
 	public List<Role> findRoleByMenuId(Long menuId) {
 		return ((RoleMenuRepository)defaultRepository).findRoleByMenuId(menuId);
@@ -32,13 +36,6 @@ public class RoleMenuServiceImpl extends DefaultCrudServiceImpl<RoleMenu> implem
 	@Override
 	public List<Menu> findMenuByRoleId(Long roleId) {
 		return ((RoleMenuRepository)defaultRepository).findMenuByRoleId(roleId);
-	}
-
-	@Override
-	@Autowired
-	@Qualifier(value = "roleMenuRepository")
-	public void setDefaultRepository(DefaultRepository<RoleMenu> roleMenuRepository) {
-		this.defaultRepository = roleMenuRepository;
 	}
 	
 }

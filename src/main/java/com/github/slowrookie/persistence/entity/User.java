@@ -53,9 +53,12 @@ public class User extends AuditablePersistable {
 		super();
 	}
 
-	public User(String loginName, String lastname, String firstname, String password,
-			Integer gender, String email, String mobile, String telephone) {
+	public User(Long organization, Long department, String loginName,
+			String lastname, String firstname, String password, Integer gender,
+			String email, String mobile, String telephone) {
 		super();
+		this.organization = organization;
+		this.department = department;
 		this.loginName = loginName;
 		this.lastname = lastname;
 		this.firstname = firstname;
@@ -65,7 +68,9 @@ public class User extends AuditablePersistable {
 		this.mobile = mobile;
 		this.telephone = telephone;
 	}
-	
+
+
+
 	public Long getOrganization() {
 		return organization;
 	}
