@@ -99,12 +99,25 @@ public class RoleMenuController {
 	 * 根据menuId查询Role
 	 * 
 	 * @param menuId
-	 * 		用户ID
+	 * 		菜单ID
 	 * @return List<Role>
 	 */
-	@RequestMapping(value = "/RoleMenus/menu/{menuId}", method = RequestMethod.GET)
+	@RequestMapping(value = "/roleMenus/menu/{menuId}", method = RequestMethod.GET)
 	@ResponseBody List<Role> findRoleByMenuId(@PathVariable Long menuId){
 		return roleMenuService.findRoleByMenuId(menuId);
+	}
+	
+
+	/**
+	 * 根据userId查询{@link Menu}
+	 * 
+	 * @param userId
+	 * 		用户ID
+	 * @return List<Menu>
+	 */
+	@RequestMapping(value = "/roleMenus/user/{userId}", method = RequestMethod.GET)
+	@ResponseBody List<Menu> findMenuByUserId(@PathVariable Long userId){
+		return roleMenuService.findMenyByUserId(userId);
 	}
 	
 }

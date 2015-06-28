@@ -28,7 +28,6 @@ public class Role extends AuditablePersistable {
 	protected String name;
 	
 	//默认均为菜单权限
-	@NotEmpty
 	protected Integer type = RoleType.MENU.value();
 
 	public Role() {

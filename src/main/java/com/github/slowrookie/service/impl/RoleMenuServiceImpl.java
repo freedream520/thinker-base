@@ -37,5 +37,12 @@ public class RoleMenuServiceImpl extends DefaultCrudServiceImpl<RoleMenu> implem
 	public List<Menu> findMenuByRoleId(Long roleId) {
 		return ((RoleMenuRepository)defaultRepository).findMenuByRoleId(roleId);
 	}
+
+	@Override
+	public List<Menu> findMenyByUserId(Long userId) {
+		return ((RoleMenuRepository)defaultRepository).findMenuByUserId(userId);
+	}
+	
+	
 	
 }

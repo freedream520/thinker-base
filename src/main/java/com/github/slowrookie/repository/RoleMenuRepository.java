@@ -21,4 +21,7 @@ public interface RoleMenuRepository extends DefaultRepository<RoleMenu> {
 	@Query("select rm.menu from RoleMenu rm where rm.role.id = ?1")
 	public List<Menu> findMenuByRoleId(Long roleId);
 	
+	@Query("select rm.menu from RoleMenu rm, UserRole ur where ur.role.id = rm.role.id and ur.user.id = ?1")
+	public List<Menu> findMenuByUserId(Long userId);
+	
 }

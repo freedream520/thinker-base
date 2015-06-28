@@ -27,10 +27,10 @@ public class DepartmentController {
 	private DefaultCrudService<Department> departmentService;
 	
 	/**
-	 * 根据主键id查询
+	 * 根据主键{@link Department} ID查询
 	 * 
 	 * @param id
-	 * @return
+	 * @return {@link Department}
 	 */
 	@RequestMapping(value = "/department/{id}", method = RequestMethod.GET)
 	@ResponseBody Department findOne(@PathVariable("id") Long id) {
@@ -39,7 +39,7 @@ public class DepartmentController {
 	}
 	
 	/**
-	 * 根据id删除菜单信息
+	 * 根据{@link Department} ID删除菜单信息
 	 * 
 	 * @param id
 	 */
@@ -51,35 +51,35 @@ public class DepartmentController {
 	/**
 	 * 保存或者更新
 	 * 
-	 * @param menu
-	 * 		序列化的Menu对象
-	 * @return menu
-	 * 		返回更新完成后的Menu
+	 * @param {@link Department}
+	 * 		序列化的Department对象
+	 * @return {@link Department}
+	 * 		返回更新完成后的Department
 	 */
 	@RequestMapping(value = "/departments", method = RequestMethod.PUT, produces = "application/json")
-	@ResponseBody Department save(@RequestBody Department menu){
-		return departmentService.save(menu);
+	@ResponseBody Department save(@RequestBody Department department){
+		return departmentService.save(department);
 	}
 	
 	/**
 	 * 批量插入
 	 * 
-	 * @param menus
-	 * @return
+	 * @param departments
+	 * @return List of {@link Department}
 	 */
 	@RequestMapping(value = "/departments", method = RequestMethod.POST, produces = "application/json")
-	@ResponseBody List<Department> saveAll(@RequestBody List<Department> menus){
-		return departmentService.save(menus);
+	@ResponseBody List<Department> saveAll(@RequestBody List<Department> departments){
+		return departmentService.save(departments);
 	}
 	
 	/**
 	 * 查询获取departments支持全属性条件查询
 	 * 
-	 * @param departmentQuery
+	 * @param {@link DepartmentQuery}
 	 * 		菜单查询对象，通过JSON传递
-	 * @param pageParamater
+	 * @param {@link PageParamater}
 	 * 		分页查询条件对象
-	 * @return Page<Department>
+	 * @return {@link Page<Department>}
 	 * 		返回分页数据
 	 */
 	@RequestMapping(value = "/departments", method = RequestMethod.GET, produces = "application/json")

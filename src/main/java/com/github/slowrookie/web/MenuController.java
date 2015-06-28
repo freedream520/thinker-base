@@ -30,7 +30,7 @@ public class MenuController {
 	 * 根据主键id查询
 	 * 
 	 * @param id
-	 * @return
+	 * @return {@link Menu}
 	 */
 	@RequestMapping(value = "/menu/{id}", method = RequestMethod.GET)
 	@ResponseBody Menu findOne(@PathVariable("id") Long id) {
@@ -51,9 +51,9 @@ public class MenuController {
 	/**
 	 * 保存或者更新
 	 * 
-	 * @param menu
+	 * @param {@link Menu}
 	 * 		序列化的Menu对象
-	 * @return menu
+	 * @return {@link Menu}
 	 * 		返回更新完成后的Menu
 	 */
 	@RequestMapping(value = "/menus", method = RequestMethod.PUT, produces = "application/json")
@@ -65,7 +65,7 @@ public class MenuController {
 	 * 批量插入
 	 * 
 	 * @param menus
-	 * @return
+	 * @return List<Menu>
 	 */
 	@RequestMapping(value = "/menus", method = RequestMethod.POST, produces = "application/json")
 	@ResponseBody List<Menu> saveAll(@RequestBody List<Menu> menus){

@@ -29,5 +29,12 @@ public interface RoleMenuService extends DefaultCrudService<RoleMenu> {
 	 */
 	public List<Menu> findMenuByRoleId(Long roleId);
 	
+	/**
+	 * 根据用户查询用户拥有的菜单
+	 * 
+	 * @param userId
+	 * @return
+	 */
+	public List<Menu> findMenyByUserId(Long userId);
 	
 }

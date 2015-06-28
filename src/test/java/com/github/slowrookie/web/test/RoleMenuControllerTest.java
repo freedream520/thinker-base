@@ -79,11 +79,18 @@ public class RoleMenuControllerTest extends AbstractTest{
 		Map<String, String> role = new HashMap<>();
 		role.put("id", "1");
 		
-		map.put("user", menu);
+		map.put("menu", menu);
 		map.put("role", role);
 		
 		roles.add(map);
 		doRequest(url, HttpMethod.POST, roles);
+	}
+
+	
+	@Test
+	public void findMenuByUserId() {
+		String url = HOST + "/roleMenus/user/1";
+		doRequest(url, HttpMethod.GET, null);
 	}
 	
 	
