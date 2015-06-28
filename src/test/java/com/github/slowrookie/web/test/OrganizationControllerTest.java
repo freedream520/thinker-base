@@ -25,7 +25,7 @@ public class OrganizationControllerTest extends AbstractTest{
 	
 	@Test
 	public void save(){
-		String url = HOST + "organizations";
+		String url = HOST + "organizations"; 
 		
 		Map<String, Object> menu = new HashMap<>();
 		menu.put("name", "一级组织");
