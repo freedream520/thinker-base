@@ -79,7 +79,7 @@ public class RoleMenuController {
 	 */
 	@RequestMapping(value = "/roleMenus", method = RequestMethod.GET, produces = "application/json")
 	@ResponseBody List<RoleMenu> findAll(){
-		return roleMenuService.findAll(null);
+		return roleMenuService.findAll();
 	}
 	
 	/**

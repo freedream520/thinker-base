@@ -79,7 +79,7 @@ public class UserRoleController {
 	 */
 	@RequestMapping(value = "/userRoles", method = RequestMethod.GET, produces = "application/json")
 	@ResponseBody List<UserRole> findAll(){
-		return userRoleService.findAll(null);
+		return userRoleService.findAll();
 	}
 	
 	/**
