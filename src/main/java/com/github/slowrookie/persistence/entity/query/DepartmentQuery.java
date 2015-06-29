@@ -43,6 +43,10 @@ public class DepartmentQuery extends Department implements Specification<Departm
 			predicates.add(cb.like(root.get("code").as(String.class), "%" + this.code + "%"));
 		}
 		
+		if(!StringUtils.isEmpty(this.hiberarchy)){
+			predicates.add(cb.like(root.get("hiberarchy").as(String.class), this.code + "%"));
+		}
+		
 		Predicate[] pre = new Predicate[predicates.size()];
 		return query.where(predicates.toArray(pre)).getRestriction();
 	}

@@ -1,16 +1,10 @@
 package com.github.slowrookie.persistence.entity;
 
-import java.util.HashSet;
-import java.util.Set;
-
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
-import com.github.slowrookie.persistence.AuditablePersistable;
+import com.github.slowrookie.persistence.TreePersistable;
 
 /**
  * 部门实体类映射
@@ -19,44 +13,19 @@ import com.github.slowrookie.persistence.AuditablePersistable;
  */
 @Entity
 @Table(name = "base_department")
-public class Department extends AuditablePersistable {
+public class Department extends TreePersistable {
 
 	private static final long serialVersionUID = 1L;
 
 	@NotNull
-	@Column(length = 40, nullable = true, unique = true)
-	protected String name;
-	
-	@NotNull
-	protected String code = "";
-	
-	@NotNull
 	protected Long organization;
 
-	protected Long parent;
-	
-	@OneToMany(mappedBy = "parent", cascade = CascadeType.ALL)
-	private Set<Department> children = new HashSet<Department>();
-	
-	public boolean isChild() {
-		if(children.isEmpty() && parent != null ) return true;
-		return false;
+	public Long getOrganization() {
+		return organization;
 	}
 
-	public String getName() { 
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name; 
-	}
-
-	public String getCode() {
-		return code;
-	}
-
-	public void setCode(String code) {
-		this.code = code;
+	public void setOrganization(Long organization) {
+		this.organization = organization;
 	}
 
 	public Long getParent() {
@@ -65,14 +34,6 @@ public class Department extends AuditablePersistable {
 
 	public void setParent(Long parent) {
 		this.parent = parent;
-	}
-
-	public Set<Department> getChildren() {
-		return children;
-	}
-
-	public void setChildren(Set<Department> children) {
-		this.children = children;
 	}
 
 	@Override
