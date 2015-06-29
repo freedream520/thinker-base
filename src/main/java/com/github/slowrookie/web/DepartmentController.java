@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.github.slowrookie.helper.TreeHelper;
 import com.github.slowrookie.persistence.entity.Department;
 import com.github.slowrookie.persistence.entity.query.DepartmentQuery;
 import com.github.slowrookie.service.DefaultCrudService;
@@ -87,5 +88,17 @@ public class DepartmentController {
 		return departmentService.findAll(departmentQuery, pageParamater.getPageRequest());
 	}
 	
+	/**
+	 * 查询部门树
+	 * 
+	 * @param departmentQuery
+	 * @return Department
+	 */
+	@RequestMapping(value = "/departments/tree", method = RequestMethod.GET, produces = "application/json")
+	@ResponseBody Department findDepartmentTree(DepartmentQuery departmentQuery){
+		List<Department> departments = departmentService.findAll(departmentQuery);
+		TreeHelper<Department> helper = new TreeHelper<Department>(departments);
+		return helper.generateTee();
+	}
 	
 }

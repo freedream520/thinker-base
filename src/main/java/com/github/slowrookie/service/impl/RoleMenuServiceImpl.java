@@ -43,6 +43,4 @@ public class RoleMenuServiceImpl extends DefaultCrudServiceImpl<RoleMenu> implem
 		return ((RoleMenuRepository)defaultRepository).findMenuByUserId(userId);
 	}
 	
-	
-	
 }

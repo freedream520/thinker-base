@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.github.slowrookie.helper.TreeHelper;
 import com.github.slowrookie.persistence.entity.Menu;
 import com.github.slowrookie.persistence.entity.Role;
 import com.github.slowrookie.persistence.entity.RoleMenu;
@@ -118,6 +119,20 @@ public class RoleMenuController {
 	@RequestMapping(value = "/roleMenus/user/{userId}", method = RequestMethod.GET)
 	@ResponseBody List<Menu> findMenuByUserId(@PathVariable Long userId){
 		return roleMenuService.findMenyByUserId(userId);
+	}
+	
+	/**
+	 * 根据用户查询{@link Menu}树
+	 * 
+	 * @param userId
+	 * 		用户ID
+	 * @return List<Menu>
+	 */
+	@RequestMapping(value = "/roleMenus/tree/user/{userId}", method = RequestMethod.GET)
+	@ResponseBody Menu findMenuTreeByUserId(@PathVariable Long userId){
+		List<Menu> menus = roleMenuService.findMenyByUserId(userId);
+		TreeHelper<Menu> helper = new TreeHelper<Menu>(menus);
+		return helper.generateTee();
 	}
 	
 }

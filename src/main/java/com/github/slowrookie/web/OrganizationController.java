@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.github.slowrookie.helper.TreeHelper;
 import com.github.slowrookie.persistence.entity.Organization;
 import com.github.slowrookie.persistence.entity.query.OrganizationQuery;
 import com.github.slowrookie.service.DefaultCrudService;
@@ -87,5 +88,17 @@ public class OrganizationController {
 		return organizationService.findAll(organizationQuery, pageParamater.getPageRequest());
 	}
 	
+	/**
+	 * 查询组织树
+	 * 
+	 * @param organizationQuery
+	 * @return Organization
+	 */
+	@RequestMapping(value = "/organizations/tree", method = RequestMethod.GET, produces = "application/json")
+	@ResponseBody Organization findOrganizationTree(OrganizationQuery organizationQuery){
+		List<Organization> organizations = organizationService.findAll(organizationQuery);
+		TreeHelper<Organization> helper = new TreeHelper<Organization>(organizations);
+		return helper.generateTee();
+	}
 	
 }

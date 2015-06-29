@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.github.slowrookie.helper.TreeHelper;
 import com.github.slowrookie.persistence.entity.Menu;
 import com.github.slowrookie.persistence.entity.query.MenuQuery;
 import com.github.slowrookie.service.DefaultCrudService;
@@ -87,5 +88,17 @@ public class MenuController {
 		return menuService.findAll(menuQuery, pageParamater.getPageRequest());
 	}
 	
+	/**
+	 * 查询菜单树
+	 * 
+	 * @param menuQuery
+	 * @return Menu
+	 */
+	@RequestMapping(value = "/menus/tree", method = RequestMethod.GET, produces = "application/json")
+	@ResponseBody Menu findMenuTree(MenuQuery menuQuery){
+		List<Menu> menus = menuService.findAll(menuQuery);
+		TreeHelper<Menu> helper = new TreeHelper<Menu>(menus);
+		return helper.generateTee();
+	}
 	
 }
