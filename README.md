@@ -9,3 +9,5 @@
 >* com.github.slowrookie.service.impl				服务类实现类
 >* com.github.slowrookie.web						Controller管理
 
+###主要结构图
+![主要结构图](https://raw.githubusercontent.com/SlowRookie/thinker-base/master/src/test/resources/datamodel/model.png)
