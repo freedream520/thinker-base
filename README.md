@@ -10,4 +10,4 @@
 >* com.github.slowrookie.web						Controller管理
 
 ###主要结构图
-![主要结构图](https://raw.githubusercontent.com/SlowRookie/thinker-base/master/src/test/resources/datamodel/model.png)
+![主要结构图](https://raw.githubusercontent.com/SlowRookie/thinker-base/master/src/test/resouces/datamodel/model.png)
