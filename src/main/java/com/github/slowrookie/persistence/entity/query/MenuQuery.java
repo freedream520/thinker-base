@@ -39,6 +39,10 @@ public class MenuQuery extends Menu implements Specification<Menu> {
 			predicates.add(cb.equal(root.get("activity"), this.activity));
 		}
 		
+		if(null != this.code){
+			predicates.add(cb.like(root.get("code").as(String.class), "%"+ this.code +"%"));
+		}
+		
 		if(!StringUtils.isEmpty(this.hiberarchy)){
 			predicates.add(cb.like(root.get("hiberarchy").as(String.class), this.code + "%"));
 		}

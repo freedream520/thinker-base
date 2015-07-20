@@ -89,6 +89,17 @@ public class DepartmentController {
 	}
 	
 	/**
+	 * 根据属性查找所有
+	 * 
+	 * @param departmentQuery
+	 * @return
+	 */
+	@RequestMapping(value = "/departments/all", method = RequestMethod.GET, produces = "application/json")
+	@ResponseBody List<Department> findAll(DepartmentQuery departmentQuery) {
+		return departmentService.findAll(departmentQuery);
+	}
+	
+	/**
 	 * 查询部门树
 	 * 
 	 * @param departmentQuery

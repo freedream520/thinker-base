@@ -89,6 +89,17 @@ public class MenuController {
 	}
 	
 	/**
+	 * 根据属性查找所有
+	 * 
+	 * @param menuQuery
+	 * @return
+	 */
+	@RequestMapping(value = "/menus/all", method = RequestMethod.GET, produces = "application/json")
+	@ResponseBody List<Menu> findAll(MenuQuery menuQuery) {
+		return menuService.findAll(menuQuery);
+	}
+	
+	/**
 	 * 查询菜单树
 	 * 
 	 * @param menuQuery

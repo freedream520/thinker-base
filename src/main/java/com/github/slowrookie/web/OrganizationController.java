@@ -89,6 +89,17 @@ public class OrganizationController {
 	}
 	
 	/**
+	 * 根据属性查找所有
+	 * 
+	 * @param organizationQuery
+	 * @return
+	 */
+	@RequestMapping(value = "/organizations/all", method = RequestMethod.GET, produces = "application/json")
+	@ResponseBody List<Organization> findAll(OrganizationQuery organizationQuery) {
+		return organizationService.findAll(organizationQuery);
+	}
+	
+	/**
 	 * 查询组织树
 	 * 
 	 * @param organizationQuery
