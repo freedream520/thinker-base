@@ -3,6 +3,7 @@ package com.github.slowrookie.persistence.entity;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
+import com.github.slowrookie.constant.OrganizationType;
 import com.github.slowrookie.persistence.TreePersistable;
 
 /**
@@ -15,6 +16,17 @@ import com.github.slowrookie.persistence.TreePersistable;
 public class Organization extends TreePersistable {
 
 	private static final long serialVersionUID = 1L;
+	
+	//默认是组织
+	private Integer type = OrganizationType.Organization.value();
+	
+	public Integer getType() {
+		return type;
+	}
+
+	public void setType(Integer type) {
+		this.type = type;
+	}
 
 	@Override
 	public int hashCode() {

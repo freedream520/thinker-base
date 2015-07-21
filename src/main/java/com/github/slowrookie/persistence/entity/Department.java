@@ -7,7 +7,7 @@ import javax.validation.constraints.NotNull;
 import com.github.slowrookie.persistence.TreePersistable;
 
 /**
- * 部门实体类映射
+ * 部门实体类映射（暂时弃用，组织与部门之间的关系并不非常明确，所在在Organization中添加type以做区分）
  * 
  * @author 刘佳兴
  */
