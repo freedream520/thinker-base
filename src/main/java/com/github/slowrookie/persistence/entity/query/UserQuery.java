@@ -47,10 +47,6 @@ public class UserQuery extends User implements Specification<User> {
 			predicates.add(cb.equal(root.get("organization"), this.organization));
 		}
 		
-		if(null != this.department){
-			predicates.add(cb.equal(root.get("department"), this.department));
-		}
-		
 		Predicate[] pre = new Predicate[predicates.size()];
 		return query.where(predicates.toArray(pre)).getRestriction();
 	}

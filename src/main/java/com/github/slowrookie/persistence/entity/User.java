@@ -21,9 +21,6 @@ public class User extends AuditablePersistable {
 	@NotNull
 	protected Long organization;
 	
-	@NotNull
-	protected Long department;
-	
 	@Column(unique = true ,length = 20)
 	protected String loginName;
 	
@@ -53,12 +50,11 @@ public class User extends AuditablePersistable {
 		super();
 	}
 
-	public User(Long organization, Long department, String loginName,
+	public User(Long organization, String loginName,
 			String lastname, String firstname, String password, Integer gender,
 			String email, String mobile, String telephone) {
 		super();
 		this.organization = organization;
-		this.department = department;
 		this.loginName = loginName;
 		this.lastname = lastname;
 		this.firstname = firstname;
@@ -77,14 +73,6 @@ public class User extends AuditablePersistable {
 
 	public void setOrganization(Long organization) {
 		this.organization = organization;
-	}
-
-	public Long getDepartment() {
-		return department;
-	}
-
-	public void setDepartment(Long department) {
-		this.department = department;
 	}
 
 	public String getLoginName() {

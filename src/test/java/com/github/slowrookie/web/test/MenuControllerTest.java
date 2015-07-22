@@ -35,10 +35,11 @@ public class MenuControllerTest extends AbstractTest{
 		
 		Map<String, Object> menu = new HashMap<>();
 		menu.put("name", "一级菜单");
-		menu.put("code", "001");
+		menu.put("code", null);
 		menu.put("hiberarchy", "001");
 		menu.put("resource", "/menus0");
 		menu.put("parent", "0");
+		menu.put("activity", 1);
 		doRequest(url, HttpMethod.PUT, menu);
 	}
 	
