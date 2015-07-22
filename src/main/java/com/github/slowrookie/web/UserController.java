@@ -86,4 +86,19 @@ public class UserController {
 		return userService.findAll(userQuery, pageParamater.getPageRequest());
 	}
 	
+	/**
+	 * 查询获取users支持全属性条件查询
+	 * 
+	 * @param userQuery
+	 * 		用户查询对象，通过JSON传递
+	 * @param pageParamater
+	 * 		分页查询条件对象
+	 * @return Page<User>
+	 * 		返回分页数据
+	 */
+	@RequestMapping(value = "/users/all", method = RequestMethod.GET, produces = "application/json")
+	@ResponseBody List<User> findAll(UserQuery userQuery) {
+		return userService.findAll(userQuery);
+	}
+	
 }
