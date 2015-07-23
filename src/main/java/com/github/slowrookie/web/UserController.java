@@ -57,6 +57,7 @@ public class UserController {
 	 */
 	@RequestMapping(value = "/users", method = RequestMethod.PUT, produces = "application/json")
 	@ResponseBody User save(@RequestBody User user){
+		user.setPassword("8888");
 		return userService.save(user);
 	}
 	

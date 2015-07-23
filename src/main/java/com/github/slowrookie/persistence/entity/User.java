@@ -24,11 +24,8 @@ public class User extends AuditablePersistable {
 	@Column(unique = true ,length = 20)
 	protected String loginName;
 	
-	@Column(length = 10)
-	protected String lastname;
-	
 	@Column(length = 20)
-	protected String firstname;
+	protected String realName;
 	
 	@NotNull
 	@Column(length = 40)
@@ -51,13 +48,12 @@ public class User extends AuditablePersistable {
 	}
 
 	public User(Long organization, String loginName,
-			String lastname, String firstname, String password, Integer gender,
+			String realName, String password, Integer gender,
 			String email, String mobile, String telephone) {
 		super();
 		this.organization = organization;
 		this.loginName = loginName;
-		this.lastname = lastname;
-		this.firstname = firstname;
+		this.realName = realName;
 		this.password = password;
 		this.gender = gender;
 		this.email = email;
@@ -82,25 +78,15 @@ public class User extends AuditablePersistable {
 	public void setLoginName(String loginName) {
 		this.loginName = loginName;
 	}
-
-
-	public String getLastname() {
-		return lastname;
-	}
-
-	public void setLastname(String lastname) {
-		this.lastname = lastname;
-	}
-
-	public String getFirstname() {
-		return firstname;
-	}
-
-	public void setFirstname(String firstname) {
-		this.firstname = firstname;
-	}
-
 	
+	public String getRealName() {
+		return realName;
+	}
+
+	public void setRealName(String realName) {
+		this.realName = realName;
+	}
+
 	public String getPassword() {
 		return password;
 	}
