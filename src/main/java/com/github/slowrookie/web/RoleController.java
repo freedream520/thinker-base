@@ -87,5 +87,19 @@ public class RoleController {
 		return roleService.findAll(roleQuery, pageParamater.getPageRequest());
 	}
 
+	/**
+	 * 查询获取users支持全属性条件查询
+	 * 
+	 * @param roleQuery
+	 * 		用户查询对象，通过JSON传递
+	 * @param pageParamater
+	 * 		分页查询条件对象
+	 * @return Page<Role> {@link Role}
+	 * 		返回分页数据
+	 */
+	@RequestMapping(value = "/roles/all", method = RequestMethod.GET, produces = "application/json")
+	@ResponseBody public List<Role> findAll(RoleQuery roleQuery) {
+		return roleService.findAll(roleQuery);
+	}
 	
 }
