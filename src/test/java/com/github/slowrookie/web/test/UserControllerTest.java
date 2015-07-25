@@ -6,6 +6,7 @@ import java.util.List;
 import org.junit.Test;
 import org.springframework.http.HttpMethod;
 
+import com.github.slowrookie.persistence.entity.Organization;
 import com.github.slowrookie.persistence.entity.User;
 import com.github.slowrookie.test.AbstractTest;
 
@@ -26,7 +27,7 @@ public class UserControllerTest extends AbstractTest{
 	@Test
 	public void saveUser(){
 		String url = HOST + "users";
-		User user = new User(1L, "liujx", "刘佳兴", "3", 1, "liujiaxingemail@gmail.com", "17092080066", "00000000");
+		User user = new User(new Organization(1L), "liujx", "刘佳兴", "3", 1, "liujiaxingemail@gmail.com", "17092080066", "00000000");
 		doRequest(url, HttpMethod.PUT, user);
 	}
 	
@@ -46,8 +47,8 @@ public class UserControllerTest extends AbstractTest{
 	public void saveUsers(){
 		String url = HOST + "users";
 		List<User> users = new ArrayList<>();
-		User user = new User(1L, "liujx1", "刘佳兴", "3", 1, "liujiaxingemail@gmail.com", "17092080066", "00000000");
-		User user1 = new User(1L, "liujx2", "刘佳兴", "3", 1, "liujiaxingemail@gmail.com", "17092080066", "00000000");
+		User user = new User(new Organization(1L), "liujx1", "刘佳兴", "3", 1, "liujiaxingemail@gmail.com", "17092080066", "00000000");
+		User user1 = new User(new Organization(1L), "liujx2", "刘佳兴", "3", 1, "liujiaxingemail@gmail.com", "17092080066", "00000000");
 		users.add(user);
 		users.add(user1);
 		doRequest(url, HttpMethod.POST, users);

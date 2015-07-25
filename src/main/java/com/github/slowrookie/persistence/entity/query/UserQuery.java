@@ -28,7 +28,7 @@ public class UserQuery extends User implements Specification<User> {
 		List<Predicate> predicates = new ArrayList<Predicate>();
 		
 		if(!StringUtils.isEmpty(this.loginName)) {
-			predicates.add(cb.like(root.get("loginName").as(String.class), "%" + this.loginName + "%"));
+			predicates.add(cb.equal(root.get("loginName"), this.loginName));
 		}
 		
 		if(null != this.id) {
@@ -48,6 +48,7 @@ public class UserQuery extends User implements Specification<User> {
 		}
 		
 		Predicate[] pre = new Predicate[predicates.size()];
+		
 		return query.where(predicates.toArray(pre)).getRestriction();
 	}
 	

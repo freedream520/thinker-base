@@ -20,6 +20,14 @@ public class Organization extends TreePersistable {
 	//默认是组织
 	private Integer type = OrganizationType.Organization.value();
 	
+	public Organization() {
+		super();
+	}
+
+	public Organization(Long id) {
+		super(id);
+	}
+
 	public Integer getType() {
 		return type;
 	}
@@ -27,7 +35,7 @@ public class Organization extends TreePersistable {
 	public void setType(Integer type) {
 		this.type = type;
 	}
-
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;

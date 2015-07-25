@@ -27,6 +27,8 @@ public class Role extends AuditablePersistable {
 	@Column(length = 20, unique = true)
 	protected String name;
 	
+	protected String describe;
+	
 	//默认均为菜单权限
 	protected Integer type = RoleType.MENU.value();
 
@@ -54,6 +56,14 @@ public class Role extends AuditablePersistable {
 
 	public void setType(Integer type) {
 		this.type = type;
+	}
+	
+	public String getDescribe() {
+		return describe;
+	}
+
+	public void setDescribe(String describe) {
+		this.describe = describe;
 	}
 
 	@Override

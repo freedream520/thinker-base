@@ -11,5 +11,4 @@ import com.github.slowrookie.persistence.entity.User;
  */
 @Repository
 public interface UserRepository extends DefaultRepository<User> {
-
 }

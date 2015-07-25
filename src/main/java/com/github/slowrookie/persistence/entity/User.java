@@ -2,6 +2,8 @@ package com.github.slowrookie.persistence.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
@@ -18,8 +20,9 @@ public class User extends AuditablePersistable {
 
 	private static final long serialVersionUID = 1L;
 
-	@NotNull
-	protected Long organization;
+	@ManyToOne(targetEntity = Organization.class)
+	@JoinColumn(name="organization_")
+	protected Organization organization;
 	
 	@Column(unique = true ,length = 20)
 	protected String loginName;
@@ -42,12 +45,12 @@ public class User extends AuditablePersistable {
 	
 	@Column(length = 20)
 	protected String telephone;
-
+	
 	public User() {
 		super();
 	}
 
-	public User(Long organization, String loginName,
+	public User(Organization organization, String loginName,
 			String realName, String password, Integer gender,
 			String email, String mobile, String telephone) {
 		super();
@@ -59,20 +62,19 @@ public class User extends AuditablePersistable {
 		this.email = email;
 		this.mobile = mobile;
 		this.telephone = telephone;
-	}
-
-
-
-	public Long getOrganization() {
-		return organization;
-	}
-
-	public void setOrganization(Long organization) {
-		this.organization = organization;
+		this.activity = 1;
 	}
 
 	public String getLoginName() {
 		return loginName;
+	}
+
+	public Organization getOrganization() {
+		return organization;
+	}
+
+	public void setOrganization(Organization organization) {
+		this.organization = organization;
 	}
 
 	public void setLoginName(String loginName) {
@@ -127,7 +129,7 @@ public class User extends AuditablePersistable {
 	public void setTelephone(String telephone) {
 		this.telephone = telephone;
 	}
-
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;

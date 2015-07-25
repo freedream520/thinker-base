@@ -21,6 +21,5 @@ public class UserServiceImpl extends DefaultCrudServiceImpl<User> {
 	public UserServiceImpl(DefaultRepository<User> userRepository) {
 		super(userRepository);
 	}
-	
-	
+
 }
