@@ -20,7 +20,7 @@ public class User extends AuditablePersistable {
 
 	private static final long serialVersionUID = 1L;
 
-	@ManyToOne(targetEntity = Organization.class)
+	@ManyToOne
 	@JoinColumn(name="organization_")
 	protected Organization organization;
 	

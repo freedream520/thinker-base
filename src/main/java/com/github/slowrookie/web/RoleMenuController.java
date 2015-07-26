@@ -39,7 +39,7 @@ public class RoleMenuController {
 	}
 	
 	/**
-	 * 删除用户信息
+	 * 删除权限关联信息
 	 * 
 	 * @param id
 	 */
