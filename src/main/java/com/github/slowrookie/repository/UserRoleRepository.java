@@ -20,5 +20,7 @@ public interface UserRoleRepository extends DefaultRepository<UserRole> {
 	
 	@Query("select u.role from UserRole u where u.user.id = ?1")
 	public List<Role> findRoleByUserId(Long userId);
+
+	public void deleteByUserId(Long userId);
 	
 }

@@ -38,4 +38,22 @@ public class UserRoleServiceImpl extends DefaultCrudServiceImpl<UserRole> implem
 		return ((UserRoleRepository)defaultRepository).findRoleByUserId(userId);
 	}
 	
+	@Override
+	public void deleteByUserId(Long userId) {
+		((UserRoleRepository)defaultRepository).deleteByUserId(userId);
+	}
+
+	@Override
+	public List<UserRole> saveAll(List<UserRole> userRoles) {
+	
+		//先删除
+		Long id = userRoles.get(0).getUser().getId();
+		this.deleteByUserId(id);
+		//再插入
+		return super.save(userRoles);
+		
+	}
+	
+	
+	
 }

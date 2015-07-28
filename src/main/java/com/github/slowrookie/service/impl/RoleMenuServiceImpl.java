@@ -43,4 +43,19 @@ public class RoleMenuServiceImpl extends DefaultCrudServiceImpl<RoleMenu> implem
 		return ((RoleMenuRepository)defaultRepository).findMenuByUserId(userId);
 	}
 	
+	@Override
+	public void deleteByRoleId(Long roleId) {
+		((RoleMenuRepository)defaultRepository).deleteByRoleId(roleId);
+	}
+
+	@Override
+	public List<RoleMenu> saveAll(List<RoleMenu> roleMenus) {
+		//先删除
+		Long id = roleMenus.get(0).getRole().getId();
+		this.deleteByRoleId(id);
+		//再插入
+		return super.save(roleMenus);
+	}
+	
+	
 }

@@ -68,7 +68,7 @@ public class UserRoleController {
 	 */
 	@RequestMapping(value = "/userRoles", method = RequestMethod.POST, produces = "application/json")
 	@ResponseBody List<UserRole> saveAll(@RequestBody List<UserRole> userRoles){
-		return userRoleService.save(userRoles);
+		return userRoleService.saveAll(userRoles);
 	}
 	
 	/**

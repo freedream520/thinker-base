@@ -69,7 +69,7 @@ public class RoleMenuController {
 	 */
 	@RequestMapping(value = "/roleMenus", method = RequestMethod.POST, produces = "application/json")
 	@ResponseBody List<RoleMenu> saveAll(@RequestBody List<RoleMenu> RoleMenus){
-		return roleMenuService.save(RoleMenus);
+		return roleMenuService.saveAll(RoleMenus);
 	}
 	
 	/**

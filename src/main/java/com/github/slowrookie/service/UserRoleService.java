@@ -28,6 +28,21 @@ public interface UserRoleService extends DefaultCrudService<UserRole> {
 	 * @return List<Role> {@link Role}
 	 */
 	public List<Role> findRoleByUser(Long userId);
+
+	/**
+	 * 先删后插
+	 * 
+	 * @param userRoles
+	 * @return
+	 */
+	public List<UserRole> saveAll(List<UserRole> userRoles);
+	
+	/**
+	 * 根据userId删除
+	 * 
+	 * @param userId
+	 */
+	public void deleteByUserId(Long userId);
 	
 	
 }

@@ -37,4 +37,19 @@ public interface RoleMenuService extends DefaultCrudService<RoleMenu> {
 	 */
 	public List<Menu> findMenyByUserId(Long userId);
 	
+	/**
+	 * 保存方法，需要先删除再插入
+	 * 
+	 * @param entities
+	 * @return
+	 */
+	public List<RoleMenu> saveAll(List<RoleMenu> roleMenus);
+	
+	/**
+	 * 根据roleId删除
+	 * 
+	 * @param roleId
+	 */
+	public void deleteByRoleId(Long roleId);
+	
 }
