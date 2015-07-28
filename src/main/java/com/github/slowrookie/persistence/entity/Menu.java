@@ -1,5 +1,6 @@
 package com.github.slowrookie.persistence.entity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
@@ -19,6 +20,9 @@ public class Menu extends TreePersistable {
 	
 	@NotNull
 	protected String resource = "";
+	
+	@Column(length = 50)
+	protected String image = "";
 
 	public String getResource() {
 		return resource;
@@ -26,6 +30,14 @@ public class Menu extends TreePersistable {
 
 	public void setResource(String resource) {
 		this.resource = resource;
+	}
+	
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
 	}
 
 	@Override
