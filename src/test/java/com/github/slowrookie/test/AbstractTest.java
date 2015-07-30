@@ -14,6 +14,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.StringHttpMessageConverter;
+import org.springframework.security.crypto.codec.Base64;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
@@ -36,6 +37,13 @@ public class AbstractTest {
 
 	protected HttpHeaders getHttpHeaders() {
 		HttpHeaders httpHeaders = new HttpHeaders();
+		
+		//用户校验
+		String auth = "liujx" + ":" + "8888";
+		byte[] bytes = Base64.encode(auth.getBytes());
+		String authHeader = "Basic " + new String(bytes);
+		httpHeaders.set("Authorization", authHeader);
+		
 		httpHeaders.setContentType(MediaType.APPLICATION_JSON);
 		List<MediaType> mediaTypes = new ArrayList<>();
 		mediaTypes.add(MediaType.APPLICATION_JSON);

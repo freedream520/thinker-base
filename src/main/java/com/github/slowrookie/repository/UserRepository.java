@@ -1,5 +1,6 @@
 package com.github.slowrookie.repository;
 
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import com.github.slowrookie.persistence.entity.User;
@@ -11,4 +12,8 @@ import com.github.slowrookie.persistence.entity.User;
  */
 @Repository
 public interface UserRepository extends DefaultRepository<User> {
+	
+	@Query("from User u where u.loginName = ?1 and u.password = ?2")
+	public User findByLoginNameAndPassword(String loginName, String password);
+	
 }
