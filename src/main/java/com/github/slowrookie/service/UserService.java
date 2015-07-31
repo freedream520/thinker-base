@@ -9,6 +9,6 @@ import com.github.slowrookie.persistence.entity.User;
  */
 public interface UserService extends DefaultCrudService<User> {
 
-	public User checkPassword(String loginName, String password);
+	public User findByLoginName(String loginName);
 	
 }

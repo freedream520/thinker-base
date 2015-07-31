@@ -31,7 +31,7 @@ public class User extends AuditablePersistable {
 	protected String realName;
 	
 	@NotNull
-	@Column(length = 40)
+	@Column(length = 255)
 	protected String password;
 	
 	@Column(length = 20)

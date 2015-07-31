@@ -27,7 +27,7 @@ public class UserControllerTest extends AbstractTest{
 	@Test
 	public void saveUser(){
 		String url = HOST + "users";
-		User user = new User(new Organization(1L), "liujx", "刘佳兴", "3", 1, "liujiaxingemail@gmail.com", "17092080066", "00000000");
+		User user = new User(new Organization(2L), "liujx0000", "刘佳兴", "3", 1, "liujiaxingemail@gmail.com", "17092080066", "00000000");
 		doRequest(url, HttpMethod.PUT, user);
 	}
 	

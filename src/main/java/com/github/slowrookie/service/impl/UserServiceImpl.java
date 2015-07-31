@@ -25,8 +25,8 @@ public class UserServiceImpl extends DefaultCrudServiceImpl<User> implements Use
 	}
 
 	@Override
-	public User checkPassword(String loginName, String password) {
-		User user = ((UserRepository)this.defaultRepository).findByLoginNameAndPassword(loginName, password);
+	public User findByLoginName(String loginName) {
+		User user = ((UserRepository)this.defaultRepository).findByLoginName(loginName);
 		return user;
 	}
 	

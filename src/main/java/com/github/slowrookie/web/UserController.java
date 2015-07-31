@@ -2,6 +2,7 @@ package com.github.slowrookie.web;
 
 import java.util.List;
 
+import org.apache.shiro.authc.credential.PasswordService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -25,6 +26,9 @@ public class UserController {
 
 	@Autowired
 	private DefaultCrudService<User> userService;
+	
+	@Autowired
+	private PasswordService defaultPasswordService;
 
 	/**
 	 * 根据主键id查询
@@ -57,7 +61,7 @@ public class UserController {
 	 */
 	@RequestMapping(value = "/users", method = RequestMethod.PUT, produces = "application/json")
 	@ResponseBody User save(@RequestBody User user){
-		user.setPassword("8888");
+		user.setPassword(defaultPasswordService.encryptPassword("8888"));
 		return userService.save(user);
 	}
 	

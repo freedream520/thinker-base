@@ -22,11 +22,19 @@
 	  	<version>0.0.1-SNAPSHOT</version>
 	</dependency>
 	
+	<!-- shiro -->
 	<dependency>
-		<groupId>joda-time</groupId>
-		<artifactId>joda-time</artifactId>
+	    <groupId>org.apache.shiro</groupId>
+	    <artifactId>shiro-web</artifactId>
+	    <version>1.2.3</version>
 	</dependency>
-    
+	
+	<dependency>
+	    <groupId>org.apache.shiro</groupId>
+	    <artifactId>shiro-spring</artifactId>
+	    <version>1.2.3</version>
+	</dependency>
+	
     <!-- war包中不需要tomcat*.jar -->
     <dependency>
         <groupId>org.springframework.boot</groupId>
