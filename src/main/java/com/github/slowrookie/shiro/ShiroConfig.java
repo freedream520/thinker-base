@@ -1,6 +1,7 @@
 package com.github.slowrookie.shiro;
 
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 import javax.servlet.Filter;
@@ -37,10 +38,11 @@ public class ShiroConfig {
 		shiroFilter.setSecurityManager(getSecurityManager());
 		
 		//设置拦截器
-		Map<String, Filter> filters = new HashMap<String, Filter>();
+		Map<String, Filter> filters = new LinkedHashMap<String, Filter>();
 		BasicHttpAuthenticationFilter authenticationFilter = new BasicHttpAuthenticationFilter();
-		authenticationFilter.setApplicationName("基础模块服务");
+		authenticationFilter.setApplicationName("Base");
 		filters.put("authcBasic", authenticationFilter);
+		shiroFilter.setFilters(filters);
 		
 		return shiroFilter;
 	}

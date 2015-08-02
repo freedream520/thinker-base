@@ -4,7 +4,6 @@ import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;
 import org.apache.shiro.authc.SimpleAuthenticationInfo;
-import org.apache.shiro.authc.credential.PasswordService;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
@@ -20,9 +19,6 @@ public class UserRealm extends AuthorizingRealm {
 
 	@Autowired
     private UserService userService;
-	
-	@Autowired
-	private PasswordService defaultPasswordService;
 	
 	@Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
@@ -45,8 +41,7 @@ public class UserRealm extends AuthorizingRealm {
         //交给AuthenticatingRealm使用CredentialsMatcher进行密码匹配
         SimpleAuthenticationInfo authenticationInfo = new SimpleAuthenticationInfo(
                 user.getLoginName(), //用户名
-                defaultPasswordService.encryptPassword(user.getPassword()), //密码 应该在新增用户时使用
-//                user.getPassword(),
+                user.getPassword(),
                 getName()  //realm name
         );
         return authenticationInfo;
