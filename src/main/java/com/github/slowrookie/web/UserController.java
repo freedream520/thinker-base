@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.shiro.authc.credential.PasswordService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -61,7 +62,11 @@ public class UserController {
 	 */
 	@RequestMapping(value = "/users", method = RequestMethod.PUT, produces = "application/json")
 	@ResponseBody User save(@RequestBody User user){
-		user.setPassword(defaultPasswordService.encryptPassword("8888"));
+		if(StringUtils.isEmpty(user.getPassword())){
+			user.setPassword(defaultPasswordService.encryptPassword("8888"));
+		}else{
+			user.setPassword(defaultPasswordService.encryptPassword(user.getPassword()));
+		}
 		return userService.save(user);
 	}
 	
