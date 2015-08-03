@@ -1,5 +1,6 @@
 package com.github.slowrookie.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -45,10 +46,12 @@ public class UserRoleServiceImpl extends DefaultCrudServiceImpl<UserRole> implem
 
 	@Override
 	public List<UserRole> saveAll(List<UserRole> userRoles) {
-	
 		//先删除
 		Long id = userRoles.get(0).getUser().getId();
 		this.deleteByUserId(id);
+		if(null == userRoles.get(0).getRole().getId()){
+			return new ArrayList<UserRole>();
+		}
 		//再插入
 		return super.save(userRoles);
 		

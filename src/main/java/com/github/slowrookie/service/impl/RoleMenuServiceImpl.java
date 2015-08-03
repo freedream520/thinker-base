@@ -1,5 +1,6 @@
 package com.github.slowrookie.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -53,6 +54,9 @@ public class RoleMenuServiceImpl extends DefaultCrudServiceImpl<RoleMenu> implem
 		//先删除
 		Long id = roleMenus.get(0).getRole().getId();
 		this.deleteByRoleId(id);
+		if(null == roleMenus.get(0).getMenu().getId()){
+			return new ArrayList<RoleMenu>();
+		}
 		//再插入
 		return super.save(roleMenus);
 	}
