@@ -1,7 +1,6 @@
 package com.github.slowrookie.persistence.entity;
 
 import javax.persistence.Entity;
-import javax.persistence.ForeignKey;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -20,11 +19,11 @@ public class UserRole extends IdentityPersistable {
 	private static final long serialVersionUID = 1L;
 
 	@ManyToOne
-	@JoinColumn(foreignKey = @ForeignKey(name="id_"), nullable = false)
+	@JoinColumn(name = "user_", nullable = false)
 	protected User user;
 	
 	@ManyToOne
-	@JoinColumn(foreignKey = @ForeignKey(name="id_"), nullable = false)
+	@JoinColumn(name="role_", nullable = false)
 	protected Role role;
 
 	public User getUser() {

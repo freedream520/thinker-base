@@ -1,7 +1,6 @@
 package com.github.slowrookie.persistence.entity;
 
 import javax.persistence.Entity;
-import javax.persistence.ForeignKey;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -20,12 +19,12 @@ public class RoleMenu extends IdentityPersistable {
 	private static final long serialVersionUID = 1L;
 
 	@ManyToOne
-	@JoinColumn(foreignKey = @ForeignKey(name="id_"), nullable = false)
+	@JoinColumn(name = "role_", nullable = false)
 	protected Role role;
 	
 	//不需要返回关联对象的children属性
 	@ManyToOne
-	@JoinColumn(foreignKey = @ForeignKey(name="id_"), nullable = false)
+	@JoinColumn(name = "menu_", nullable = false)
 	protected Menu menu;
 
 	public Menu getMenu() {
