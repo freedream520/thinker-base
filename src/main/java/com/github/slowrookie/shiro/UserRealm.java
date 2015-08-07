@@ -14,6 +14,11 @@ import org.springframework.stereotype.Component;
 import com.github.slowrookie.persistence.entity.User;
 import com.github.slowrookie.service.UserService;
 
+/**
+ * 客户端的访问使用Http Basic 方式校验
+ * 
+ * @author 刘佳兴
+ */
 @Component
 public class UserRealm extends AuthorizingRealm {
 

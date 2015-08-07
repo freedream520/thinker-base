@@ -18,7 +18,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.DependsOn;
 
 /**
- * Shiro Java Configuration 配置
+ *Apache Shiro Java Configuration 配置
  * 
  * @author 刘佳兴
  */

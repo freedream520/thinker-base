@@ -36,7 +36,7 @@ public class OrganizationControllerTest extends AbstractTest{
 	
 	@Test
 	public void delete(){
-		String url = HOST + "organization/1";
+		String url = HOST + "organization/2";
 		doRequest(url, HttpMethod.DELETE, null);
 	}
 	
