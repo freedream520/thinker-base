@@ -47,6 +47,10 @@ public class MenuQuery extends Menu implements Specification<Menu> {
 			predicates.add(cb.like(root.get("hiberarchy").as(String.class), this.code + "%"));
 		}
 		
+		if(this.type != null){
+			predicates.add(cb.equal(root.get("type"), this.type));
+		}
+		
 		//order by
 		query.orderBy(cb.asc(root.get("createdDate")));
 		

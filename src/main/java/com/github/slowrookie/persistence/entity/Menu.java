@@ -5,7 +5,6 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
-import com.github.slowrookie.constant.MenuType;
 import com.github.slowrookie.persistence.TreePersistable;
 
 /**
@@ -26,7 +25,7 @@ public class Menu extends TreePersistable {
 	protected String image = "";
 	
 	@NotNull
-	protected Integer type = MenuType.MENU.value();
+	protected Integer type = null;
 
 	public String getResource() {
 		return resource;

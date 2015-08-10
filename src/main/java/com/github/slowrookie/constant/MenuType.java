@@ -9,7 +9,7 @@ public enum MenuType {
 	
 	MENU(0, "菜单"),
 	
-	BUTTON(1, "按钮")
+	BUTTON(1, "功能")
 	
 	;
 	
