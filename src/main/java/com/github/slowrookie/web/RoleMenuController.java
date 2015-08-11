@@ -117,8 +117,9 @@ public class RoleMenuController {
 	 * @return List<Menu>
 	 */
 	@RequestMapping(value = "/roleMenus/user/{userId}", method = RequestMethod.GET)
-	@ResponseBody List<Menu> findMenuByUserId(@PathVariable Long userId){
-		return roleMenuService.findMenyByUserId(userId);
+	@ResponseBody List<Menu> findMenuByUserId(@PathVariable Long userId, Integer type){
+		if(type == null) type = 0;
+		return roleMenuService.findMenyByUserId(userId, type);
 	}
 	
 	/**
@@ -129,8 +130,9 @@ public class RoleMenuController {
 	 * @return List<Menu>
 	 */
 	@RequestMapping(value = "/roleMenus/tree/user/{userId}", method = RequestMethod.GET)
-	@ResponseBody Menu findMenuTreeByUserId(@PathVariable Long userId){
-		List<Menu> menus = roleMenuService.findMenyByUserId(userId);
+	@ResponseBody Menu findMenuTreeByUserId(@PathVariable Long userId, Integer type){
+		if(type == null) type = 0;
+		List<Menu> menus = roleMenuService.findMenyByUserId(userId, type);
 		TreeHelper<Menu> helper = new TreeHelper<Menu>(menus);
 		return helper.generateTee();
 	}

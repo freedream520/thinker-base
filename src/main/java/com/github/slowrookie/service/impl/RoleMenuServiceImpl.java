@@ -40,8 +40,8 @@ public class RoleMenuServiceImpl extends DefaultCrudServiceImpl<RoleMenu> implem
 	}
 
 	@Override
-	public List<Menu> findMenyByUserId(Long userId) {
-		return ((RoleMenuRepository)defaultRepository).findMenuByUserId(userId);
+	public List<Menu> findMenyByUserId(Long userId, Integer type) {
+		return ((RoleMenuRepository)defaultRepository).findMenuByUserId(userId, type);
 	}
 	
 	@Override

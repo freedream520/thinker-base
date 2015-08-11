@@ -35,7 +35,7 @@ public interface RoleMenuService extends DefaultCrudService<RoleMenu> {
 	 * @param userId
 	 * @return
 	 */
-	public List<Menu> findMenyByUserId(Long userId);
+	public List<Menu> findMenyByUserId(Long userId, Integer type);
 	
 	/**
 	 * 保存方法，需要先删除再插入
