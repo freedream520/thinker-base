@@ -25,27 +25,27 @@ import org.springframework.context.annotation.DependsOn;
 @Configuration
 public class ShiroConfig {
 	
-	@Bean
-	public ShiroFilterFactoryBean getShiorFilter(){
-		ShiroFilterFactoryBean shiroFilter = new ShiroFilterFactoryBean();
-		
-		//设置请求的拦截
-		Map<String, String> filterChainDefinitionMapping = new HashMap<String, String>();
-		filterChainDefinitionMapping.put("/**", "authcBasic");
-		shiroFilter.setFilterChainDefinitionMap(filterChainDefinitionMapping);
-		
-		//设置SecurityManager
-		shiroFilter.setSecurityManager(getSecurityManager());
-		
-		//设置拦截器
-		Map<String, Filter> filters = new LinkedHashMap<String, Filter>();
-		BasicHttpAuthenticationFilter authenticationFilter = new BasicHttpAuthenticationFilter();
-		authenticationFilter.setApplicationName("Base");
-		filters.put("authcBasic", authenticationFilter);
-		shiroFilter.setFilters(filters);
-		
-		return shiroFilter;
-	}
+//	@Bean
+//	public ShiroFilterFactoryBean getShiorFilter(){
+//		ShiroFilterFactoryBean shiroFilter = new ShiroFilterFactoryBean();
+//
+//		//设置请求的拦截
+//		Map<String, String> filterChainDefinitionMapping = new HashMap<String, String>();
+//		filterChainDefinitionMapping.put("/**", "authcBasic");
+//		shiroFilter.setFilterChainDefinitionMap(filterChainDefinitionMapping);
+//
+//		//设置SecurityManager
+//		shiroFilter.setSecurityManager(getSecurityManager());
+//
+//		//设置拦截器
+//		Map<String, Filter> filters = new LinkedHashMap<String, Filter>();
+//		BasicHttpAuthenticationFilter authenticationFilter = new BasicHttpAuthenticationFilter();
+//		authenticationFilter.setApplicationName("Base");
+//		filters.put("authcBasic", authenticationFilter);
+//		shiroFilter.setFilters(filters);
+//
+//		return shiroFilter;
+//	}
 	
 	@Bean(name = "securityManager")
 	public DefaultWebSecurityManager getSecurityManager(){
