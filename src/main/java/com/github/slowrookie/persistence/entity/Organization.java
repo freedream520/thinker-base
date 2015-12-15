@@ -1,5 +1,6 @@
 package com.github.slowrookie.persistence.entity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
@@ -18,6 +19,7 @@ public class Organization extends TreePersistable {
 	private static final long serialVersionUID = 1L;
 	
 	//默认是组织
+	@Column(name = "type_")
 	private Integer type = OrganizationType.Organization.value();
 	
 	public Organization() {

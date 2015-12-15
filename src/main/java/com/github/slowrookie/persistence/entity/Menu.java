@@ -19,12 +19,14 @@ public class Menu extends TreePersistable {
 	private static final long serialVersionUID = 1L;
 	
 	@NotNull
+	@Column(name = "resource_")
 	protected String resource = "";
 	
-	@Column(length = 50)
+	@Column(name = "image_", length = 50)
 	protected String image = "";
 	
 	@NotNull
+	@Column(name = "type_")
 	protected Integer type = null;
 
 	public String getResource() {

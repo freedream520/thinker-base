@@ -20,37 +20,36 @@ public class User extends AuditablePersistable {
 
 	private static final long serialVersionUID = 1L;
 
-	@ManyToOne
-	@JoinColumn(name="organization_")
-	protected Organization organization;
+	@Column(name="organization_")
+	protected Long organization;
 	
-	@Column(unique = true ,length = 20)
+	@Column(name = "login_name_", unique = true ,length = 20)
 	protected String loginName;
 	
-	@Column(length = 20)
+	@Column(name = "real_name_", length = 20)
 	protected String realName;
 	
 	@NotNull
-	@Column(length = 255)
+	@Column(name = "password_", length = 255)
 	protected String password;
 	
-	@Column(length = 20)
+	@Column(name = "gender_")
 	protected Integer gender;
 	
-	@Column(length = 50)
+	@Column(name = "email_", length = 50)
 	protected String email;
 	
-	@Column(length = 20)
+	@Column(name = "mobile_", length = 20)
 	protected String mobile;
 	
-	@Column(length = 20)
+	@Column(name = "telephone_", length = 20)
 	protected String telephone;
 	
 	public User() {
 		super();
 	}
 
-	public User(Organization organization, String loginName,
+	public User(Long organization, String loginName,
 			String realName, String password, Integer gender,
 			String email, String mobile, String telephone) {
 		super();
@@ -69,11 +68,11 @@ public class User extends AuditablePersistable {
 		return loginName;
 	}
 
-	public Organization getOrganization() {
+	public Long getOrganization() {
 		return organization;
 	}
 
-	public void setOrganization(Organization organization) {
+	public void setOrganization(Long organization) {
 		this.organization = organization;
 	}
 

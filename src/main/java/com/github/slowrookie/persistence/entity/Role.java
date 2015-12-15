@@ -24,12 +24,14 @@ public class Role extends AuditablePersistable {
 	
 	@NotEmpty
 	@Size(max = 20)
-	@Column(length = 20, unique = true)
+	@Column(name = "name_", length = 20, unique = true)
 	protected String name;
-	
+
+	@Column(name = "describe_")
 	protected String describe;
 	
 	//默认均为菜单权限
+    @Column(name = "type_")
 	protected Integer type = RoleType.MENU.value();
 
 	public Role() {
