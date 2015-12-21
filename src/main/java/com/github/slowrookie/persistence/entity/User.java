@@ -1,13 +1,11 @@
 package com.github.slowrookie.persistence.entity;
 
+import com.github.slowrookie.persistence.AuditablePersistable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
-
-import com.github.slowrookie.persistence.AuditablePersistable;
 
 /**
  * 用户实体类
@@ -47,6 +45,10 @@ public class User extends AuditablePersistable {
 	
 	public User() {
 		super();
+	}
+
+	public User(Long id){
+		this.id = id;
 	}
 
 	public User(Long organization, String loginName,

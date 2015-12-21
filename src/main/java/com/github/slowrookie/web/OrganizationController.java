@@ -2,6 +2,7 @@ package com.github.slowrookie.web;
 
 import java.util.List;
 
+import com.github.slowrookie.helper.PersistableHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,6 +16,8 @@ import com.github.slowrookie.helper.TreeHelper;
 import com.github.slowrookie.persistence.entity.Organization;
 import com.github.slowrookie.persistence.entity.query.OrganizationQuery;
 import com.github.slowrookie.service.DefaultCrudService;
+
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * 组织管理
@@ -30,19 +33,18 @@ public class OrganizationController {
 	/**
 	 * 根据主键id查询
 	 * 
-	 * @param id
-	 * @return
+	 * @param id 唯一ID
+	 * @return	 组织
 	 */
 	@RequestMapping(value = "/organization/{id}", method = RequestMethod.GET)
 	@ResponseBody Organization findOne(@PathVariable("id") Long id) {
-		Organization menu = organizationService.findOne(id);
-		return menu;
+		return organizationService.findOne(id);
 	}
 	
 	/**
 	 * 根据id删除菜单信息
 	 * 
-	 * @param id
+	 * @param id 唯一ID
 	 */
 	@RequestMapping(value = "/organization/{id}", method = RequestMethod.DELETE)
 	void delete(@PathVariable("id") Long id){
@@ -58,18 +60,20 @@ public class OrganizationController {
 	 * 		返回更新完成后的organization
 	 */
 	@RequestMapping(value = "/organizations", method = RequestMethod.PUT, produces = "application/json")
-	@ResponseBody Organization save(@RequestBody Organization organization){
+	@ResponseBody Organization save(HttpServletRequest request, @RequestBody Organization organization){
+		PersistableHelper.setDefaultFields(request, organization);
 		return organizationService.save(organization);
 	}
 	
 	/**
 	 * 批量插入
 	 * 
-	 * @param organizations
+	 * @param organizations 菜单
 	 * @return List<Organization>
 	 */
 	@RequestMapping(value = "/organizations", method = RequestMethod.POST, produces = "application/json")
-	@ResponseBody List<Organization> saveAll(@RequestBody List<Organization> organizations){
+	@ResponseBody List<Organization> saveAll(HttpServletRequest request,@RequestBody List<Organization> organizations){
+		PersistableHelper.setDefaultFields(request, organizations);
 		return organizationService.save(organizations);
 	}
 	
@@ -91,8 +95,8 @@ public class OrganizationController {
 	/**
 	 * 根据属性查找所有
 	 * 
-	 * @param organizationQuery
-	 * @return
+	 * @param organizationQuery 菜单查询对象
+	 * @return 菜单列表
 	 */
 	@RequestMapping(value = "/organizations/all", method = RequestMethod.GET, produces = "application/json")
 	@ResponseBody List<Organization> findAll(OrganizationQuery organizationQuery) {
@@ -102,7 +106,7 @@ public class OrganizationController {
 	/**
 	 * 查询组织树
 	 * 
-	 * @param organizationQuery
+	 * @param organizationQuery 菜单查询对象
 	 * @return Organization
 	 */
 	@RequestMapping(value = "/organizations/tree", method = RequestMethod.GET, produces = "application/json")

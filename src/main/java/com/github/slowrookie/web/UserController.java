@@ -2,6 +2,7 @@ package com.github.slowrookie.web;
 
 import java.util.List;
 
+import com.github.slowrookie.helper.PersistableHelper;
 import org.apache.shiro.authc.credential.PasswordService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -16,6 +17,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.github.slowrookie.persistence.entity.User;
 import com.github.slowrookie.persistence.entity.query.UserQuery;
 import com.github.slowrookie.service.DefaultCrudService;
+
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * 用户管理
@@ -34,8 +37,8 @@ public class UserController {
 	/**
 	 * 根据主键id查询
 	 * 
-	 * @param id
-	 * @return
+	 * @param id 唯一ID
+	 * @return User
 	 */
 	@RequestMapping(value = "/user/{id}", method = RequestMethod.GET)
 	@ResponseBody User findOne(@PathVariable("id") Long id) {
@@ -45,7 +48,7 @@ public class UserController {
 	/**
 	 * 删除用户信息
 	 * 
-	 * @param id
+	 * @param id 唯一ID
 	 */
 	@RequestMapping(value = "/user/{id}", method = RequestMethod.DELETE)
 	void delete(@PathVariable("id") Long id){
@@ -61,23 +64,32 @@ public class UserController {
 	 * 		返回更新完成后的User
 	 */
 	@RequestMapping(value = "/users", method = RequestMethod.PUT, produces = "application/json")
-	@ResponseBody User save(@RequestBody User user){
+	@ResponseBody User save(HttpServletRequest request, @RequestBody User user){
 		if(StringUtils.isEmpty(user.getPassword())){
 			user.setPassword(defaultPasswordService.encryptPassword("8888"));
 		}else{
 			user.setPassword(defaultPasswordService.encryptPassword(user.getPassword()));
 		}
+        PersistableHelper.setDefaultFields(request, user);
 		return userService.save(user);
 	}
 	
 	/**
 	 * 批量插入
 	 * 
-	 * @param users
-	 * @return
+	 * @param users 列表
+	 * @return 列表
 	 */
 	@RequestMapping(value = "/users", method = RequestMethod.POST, produces = "application/json")
-	@ResponseBody List<User> saveAll(@RequestBody List<User> users){
+	@ResponseBody List<User> saveAll(HttpServletRequest request, @RequestBody List<User> users){
+        for (User user: users){
+            if(StringUtils.isEmpty(user.getPassword())){
+                user.setPassword(defaultPasswordService.encryptPassword("8888"));
+            }else{
+                user.setPassword(defaultPasswordService.encryptPassword(user.getPassword()));
+            }
+        }
+        PersistableHelper.setDefaultFields(request, users);
 		return userService.save(users);
 	}
 	
@@ -101,8 +113,6 @@ public class UserController {
 	 * 
 	 * @param userQuery
 	 * 		用户查询对象，通过JSON传递
-	 * @param pageParamater
-	 * 		分页查询条件对象
 	 * @return Page<User>
 	 * 		返回分页数据
 	 */

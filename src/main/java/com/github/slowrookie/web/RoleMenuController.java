@@ -2,7 +2,9 @@ package com.github.slowrookie.web;
 
 import java.util.List;
 
+import com.github.slowrookie.helper.PersistableHelper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.number.PercentStyleFormatter;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,6 +17,8 @@ import com.github.slowrookie.persistence.entity.Menu;
 import com.github.slowrookie.persistence.entity.Role;
 import com.github.slowrookie.persistence.entity.RoleMenu;
 import com.github.slowrookie.service.RoleMenuService;
+
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * 角色菜单管理
@@ -30,8 +34,8 @@ public class RoleMenuController {
 	/**
 	 * 根据主键id查询
 	 * 
-	 * @param id
-	 * @return
+	 * @param id 唯一ID
+	 * @return RoleMenu
 	 */
 	@RequestMapping(value = "/roleMenu/{id}", method = RequestMethod.GET)
 	@ResponseBody RoleMenu findOne(@PathVariable("id") Long id) {
@@ -41,7 +45,7 @@ public class RoleMenuController {
 	/**
 	 * 删除权限关联信息
 	 * 
-	 * @param id
+	 * @param id 唯一ID
 	 */
 	@RequestMapping(value = "/roleMenu/{id}", method = RequestMethod.DELETE)
 	void delete(@PathVariable("id") Long id){
@@ -57,15 +61,15 @@ public class RoleMenuController {
 	 * 		返回更新完成后的RoleMenu
 	 */
 	@RequestMapping(value = "/roleMenus", method = RequestMethod.PUT, produces = "application/json")
-	@ResponseBody RoleMenu save(@RequestBody RoleMenu RoleMenu){
+	@ResponseBody RoleMenu save(HttpServletRequest request, @RequestBody RoleMenu RoleMenu){
 		return roleMenuService.save(RoleMenu);
 	}
 	
 	/**
 	 * 批量插入
 	 * 
-	 * @param RoleMenus
-	 * @return
+	 * @param RoleMenus 列表信息
+	 * @return 列表信息
 	 */
 	@RequestMapping(value = "/roleMenus", method = RequestMethod.POST, produces = "application/json")
 	@ResponseBody List<RoleMenu> saveAll(@RequestBody List<RoleMenu> RoleMenus){
@@ -74,9 +78,8 @@ public class RoleMenuController {
 	
 	/**
 	 * 查询所有
-	 * 
-	 * @param RoleMenus
-	 * @return
+	 *
+	 * @return 列表信息
 	 */
 	@RequestMapping(value = "/roleMenus", method = RequestMethod.GET, produces = "application/json")
 	@ResponseBody List<RoleMenu> findAll(){
@@ -92,8 +95,7 @@ public class RoleMenuController {
 	 */
 	@RequestMapping(value = "/roleMenus/role/{roleId}", method = RequestMethod.GET)
 	@ResponseBody List<Menu> findMenuByRoleId(@PathVariable Long roleId){
-		List<Menu> users = roleMenuService.findMenuByRoleId(roleId);
-		return users; 
+		return roleMenuService.findMenuByRoleId(roleId);
 	}
 	
 	/**
@@ -133,7 +135,7 @@ public class RoleMenuController {
 	@ResponseBody Menu findMenuTreeByUserId(@PathVariable Long userId, Integer type){
 		if(type == null) type = 0;
 		List<Menu> menus = roleMenuService.findMenyByUserId(userId, type);
-		TreeHelper<Menu> helper = new TreeHelper<Menu>(menus);
+		TreeHelper<Menu> helper = new TreeHelper<>(menus);
 		return helper.generateTee();
 	}
 	

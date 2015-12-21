@@ -2,6 +2,7 @@ package com.github.slowrookie.web;
 
 import java.util.List;
 
+import com.github.slowrookie.helper.PersistableHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,6 +15,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.github.slowrookie.persistence.entity.Role;
 import com.github.slowrookie.persistence.entity.query.RoleQuery;
 import com.github.slowrookie.service.DefaultCrudService;
+
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * 权限管理
@@ -30,7 +33,7 @@ public class RoleController {
 	/**
 	 * 根据主键id查询
 	 * 
-	 * @param id
+	 * @param id 唯一ID
 	 * @return {@link Role}
 	 */
 	@RequestMapping(value = "/role/{id}", method = RequestMethod.GET)
@@ -41,7 +44,7 @@ public class RoleController {
 	/**
 	 * 删除用户信息
 	 * 
-	 * @param id
+	 * @param id 唯一ID
 	 */
 	@RequestMapping(value = "/role/{id}", method = RequestMethod.DELETE)
 	@ResponseBody void delete(@PathVariable("id") Long id){
@@ -57,7 +60,8 @@ public class RoleController {
 	 * 		返回更新完成后的role {@link Role}
 	 */
 	@RequestMapping(value = "/roles", method = RequestMethod.PUT, produces = "application/json")
-	@ResponseBody Role save(@RequestBody Role role){
+	@ResponseBody Role save(HttpServletRequest request, @RequestBody Role role){
+		PersistableHelper.setDefaultFields(request, role);
 		return roleService.save(role);
 	}
 	
@@ -68,7 +72,8 @@ public class RoleController {
 	 * @return List<Role> {@link Role}
 	 */
 	@RequestMapping(value = "/roles", method = RequestMethod.POST, produces = "application/json")
-	@ResponseBody List<Role> saveAll(@RequestBody List<Role> roles){
+	@ResponseBody List<Role> saveAll(HttpServletRequest request, @RequestBody List<Role> roles){
+		PersistableHelper.setDefaultFields(request, roles);
 		return roleService.save(roles);
 	}
 
@@ -92,8 +97,6 @@ public class RoleController {
 	 * 
 	 * @param roleQuery
 	 * 		用户查询对象，通过JSON传递
-	 * @param pageParamater
-	 * 		分页查询条件对象
 	 * @return Page<Role> {@link Role}
 	 * 		返回分页数据
 	 */

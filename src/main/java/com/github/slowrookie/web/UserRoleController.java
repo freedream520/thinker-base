@@ -29,8 +29,8 @@ public class UserRoleController {
 	/**
 	 * 根据主键id查询
 	 * 
-	 * @param id
-	 * @return
+	 * @param id 唯一ID
+	 * @return UserRole
 	 */
 	@RequestMapping(value = "/userRole/{id}", method = RequestMethod.GET)
 	@ResponseBody UserRole findOne(@PathVariable("id") Long id) {
@@ -40,7 +40,7 @@ public class UserRoleController {
 	/**
 	 * 删除用户信息
 	 * 
-	 * @param id
+	 * @param id 唯一ID
 	 */
 	@RequestMapping(value = "/userRole/{id}", method = RequestMethod.DELETE)
 	void delete(@PathVariable("id") Long id){
@@ -63,8 +63,8 @@ public class UserRoleController {
 	/**
 	 * 批量插入
 	 * 
-	 * @param userRoles
-	 * @return
+	 * @param userRoles 列表
+	 * @return UserRoles
 	 */
 	@RequestMapping(value = "/userRoles", method = RequestMethod.POST, produces = "application/json")
 	@ResponseBody List<UserRole> saveAll(@RequestBody List<UserRole> userRoles){
@@ -73,9 +73,8 @@ public class UserRoleController {
 	
 	/**
 	 * 查询所有
-	 * 
-	 * @param userRoles
-	 * @return
+	 *
+	 * @return List<UserRole>
 	 */
 	@RequestMapping(value = "/userRoles", method = RequestMethod.GET, produces = "application/json")
 	@ResponseBody List<UserRole> findAll(){
@@ -91,8 +90,7 @@ public class UserRoleController {
 	 */
 	@RequestMapping(value = "/userRoles/role/{roleId}", method = RequestMethod.GET)
 	@ResponseBody List<User> findUserByRoleId(@PathVariable Long roleId){
-		List<User> users = userRoleService.findUserByRoleId(roleId);
-		return users; 
+		return userRoleService.findUserByRoleId(roleId);
 	}
 	
 	/**
