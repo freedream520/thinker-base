@@ -2,6 +2,8 @@ package com.github.slowrookie.base.web;
 
 import java.util.List;
 
+import com.github.slowrookie.base.persistence.entity.Menu;
+import com.github.slowrookie.base.persistence.entity.query.MenuQuery;
 import com.github.slowrookie.helper.PersistableHelper;
 import com.github.slowrookie.web.PageParamater;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,6 +42,17 @@ public class OrganizationController {
 	@RequestMapping(value = "/organization/{id}", method = RequestMethod.GET)
 	@ResponseBody Organization findOne(@PathVariable("id") Long id) {
 		return organizationService.findOne(id);
+	}
+
+	/**
+	 * 根据条件查询
+	 * @param organizationQuery OrganizationQuery
+	 * @return Organization
+	 */
+	@RequestMapping(value = "/organization", method = RequestMethod.GET)
+	@ResponseBody
+	Organization findOneByQuery(OrganizationQuery organizationQuery) {
+		return organizationService.findOne(organizationQuery);
 	}
 	
 	/**

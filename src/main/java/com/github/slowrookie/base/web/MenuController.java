@@ -41,6 +41,16 @@ public class MenuController {
 	@ResponseBody Menu findOne(@PathVariable("id") Long id) {
 		return menuService.findOne(id);
 	}
+
+    /**
+     * 根据条件查询
+     * @param menuQuery MenuQuery
+     * @return Menu
+     */
+	@RequestMapping(value = "/menu", method = RequestMethod.GET)
+	@ResponseBody Menu findOneByQuery(MenuQuery menuQuery) {
+		return menuService.findOne(menuQuery);
+	}
 	
 	/**
 	 * 根据id删除菜单信息

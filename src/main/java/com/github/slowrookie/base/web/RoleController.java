@@ -2,6 +2,8 @@ package com.github.slowrookie.base.web;
 
 import java.util.List;
 
+import com.github.slowrookie.base.persistence.entity.Organization;
+import com.github.slowrookie.base.persistence.entity.query.OrganizationQuery;
 import com.github.slowrookie.helper.PersistableHelper;
 import com.github.slowrookie.web.PageParamater;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,8 +40,20 @@ public class RoleController {
 	 * @return {@link Role}
 	 */
 	@RequestMapping(value = "/role/{id}", method = RequestMethod.GET)
-	@ResponseBody Role findOne(@PathVariable("id") Long id) {
+	@ResponseBody
+    Role findOne(@PathVariable("id") Long id) {
 		return roleService.findOne(id);
+	}
+
+	/**
+	 * 根据条件查询
+	 * @param roleQuery RoleQuery
+	 * @return Organization
+	 */
+	@RequestMapping(value = "/role", method = RequestMethod.GET)
+	@ResponseBody
+	Role findOneByQuery(RoleQuery roleQuery) {
+		return roleService.findOne(roleQuery);
 	}
 	
 	/**

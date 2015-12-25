@@ -2,6 +2,8 @@ package com.github.slowrookie.base.web;
 
 import java.util.List;
 
+import com.github.slowrookie.base.persistence.entity.Role;
+import com.github.slowrookie.base.persistence.entity.query.RoleQuery;
 import com.github.slowrookie.helper.PersistableHelper;
 import com.github.slowrookie.web.PageParamater;
 import org.apache.shiro.authc.credential.PasswordService;
@@ -44,6 +46,17 @@ public class UserController {
 	@RequestMapping(value = "/user/{id}", method = RequestMethod.GET)
 	@ResponseBody User findOne(@PathVariable("id") Long id) {
 		return userService.findOne(id);
+	}
+
+	/**
+	 * 根据条件查询
+	 * @param userQuery UserQuery
+	 * @return User
+	 */
+	@RequestMapping(value = "/user", method = RequestMethod.GET)
+	@ResponseBody
+	User findOneByQuery(UserQuery userQuery) {
+		return userService.findOne(userQuery);
 	}
 	
 	/**
