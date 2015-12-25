@@ -6,9 +6,9 @@ import java.util.List;
 import org.junit.Test;
 import org.springframework.http.HttpMethod;
 
-import com.github.slowrookie.persistence.entity.Organization;
-import com.github.slowrookie.persistence.entity.User;
+import com.github.slowrookie.base.persistence.entity.User;
 import com.github.slowrookie.test.AbstractTest;
+import org.springframework.util.Assert;
 
 /**
  * 测试UserController
@@ -53,6 +53,5 @@ public class UserControllerTest extends AbstractTest{
 		users.add(user1);
 		doRequest(url, HttpMethod.POST, users);
 	}
-	
 	
 }

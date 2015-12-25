@@ -11,8 +11,8 @@ import org.apache.shiro.subject.PrincipalCollection;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.github.slowrookie.persistence.entity.User;
-import com.github.slowrookie.service.UserService;
+import com.github.slowrookie.base.persistence.entity.User;
+import com.github.slowrookie.base.service.UserService;
 
 /**
  * 客户端的访问使用Http Basic 方式校验

@@ -1,7 +1,7 @@
 package com.github.slowrookie.helper;
 
 import com.github.slowrookie.persistence.AuditablePersistable;
-import com.github.slowrookie.persistence.entity.User;
+import com.github.slowrookie.base.persistence.entity.User;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
